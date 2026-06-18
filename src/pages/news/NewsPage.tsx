@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Search, Calendar, User, Clock, ArrowLeft, ChevronRight } from 'lucide-react';
+import { MessageSquare, Search, Calendar, User, Clock, ArrowLeft, ChevronRight, Send, ShieldCheck } from 'lucide-react';
 import imagenHero from '../../assets/service/hero-noticias.jpg';
 
 import { newsStore } from '../../features/noticias/services/newsStore';
 import type { Article } from '../../features/noticias/services/newsStore';
+import { addComment, getCommentsByNewsId } from '../../features/comentarios/services/commentsStore';
 
 /**
  * Portal de Noticias y Novedades.
@@ -20,6 +21,10 @@ export const NewsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
   const [selectedArticleId, setSelectedArticleId] = useState<number | null>(null);
   const [activePage, setActivePage] = useState(1);
+
+  // Estado para comentarios (declarado fuera del condicional para respetar las Reglas de los Hooks)
+  const [commentForm, setCommentForm] = useState({ authorName: '', authorEmail: '', content: '' });
+  const [commentFeedback, setCommentFeedback] = useState<string | null>(null);
 
   // Categorías de visualización en la cabecera
   const categories = ['Todas', 'Institucional', 'Académico', 'Comunidad', 'Deportes', 'Eventos'];
@@ -51,6 +56,30 @@ export const NewsPage: React.FC = () => {
   if (selectedArticleId !== null) {
     const article = newsArticles.find((a) => a.id === selectedArticleId);
     if (!article) return null;
+    const comments = getCommentsByNewsId(article.id);
+
+    const handleCommentSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!commentForm.authorName.trim() || !commentForm.authorEmail.trim() || !commentForm.content.trim()) {
+        setCommentFeedback('Completá todos los campos para enviar tu comentario.');
+        return;
+      }
+      if (commentForm.content.trim().length < 5) {
+        setCommentFeedback('El comentario debe tener al menos 5 caracteres.');
+        return;
+      }
+      const result = addComment(article.id, {
+        authorName: commentForm.authorName.trim(),
+        authorEmail: commentForm.authorEmail.trim(),
+        content: commentForm.content.trim(),
+      });
+      if ('error' in result) {
+        setCommentFeedback(result.error);
+        return;
+      }
+      setCommentForm({ authorName: '', authorEmail: '', content: '' });
+      setCommentFeedback('¡Gracias! Tu comentario quedó pendiente de moderación.');
+    };
 
     return (
       <div className="max-w-7xl mx-auto px-4 py-8 animate-fadeIn font-sans">
@@ -134,6 +163,86 @@ export const NewsPage: React.FC = () => {
 
         {/* Divisor Separador */}
         <hr className="border-t border-slate-200 my-16 max-w-5xl mx-auto" />
+
+        {/* Sección de Comentarios */}
+        <section className="max-w-3xl mx-auto mb-16">
+          <div className="flex items-center gap-2 mb-8">
+            <MessageSquare className="h-5 w-5 text-edu-primary" />
+            <h3 className="text-2xl font-bold text-edu-dark">Comentarios</h3>
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-500">
+              {comments.length}
+            </span>
+          </div>
+
+          {commentFeedback && (
+            <div className="mb-5 flex items-start gap-2 rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" />
+              <span>{commentFeedback}</span>
+            </div>
+          )}
+
+          {/* Formulario de comentario */}
+          <form onSubmit={handleCommentSubmit} className="mb-10 rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-4">
+            <h4 className="text-sm font-bold text-slate-700">Dejá tu comentario</h4>
+            <p className="text-[11px] text-slate-400 -mt-2">Los comentarios son moderados antes de publicarse.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Tu nombre"
+                value={commentForm.authorName}
+                onChange={e => setCommentForm(f => ({ ...f, authorName: e.target.value }))}
+                className="h-10 rounded-xl border border-slate-200 bg-white px-4 text-xs outline-none focus:border-edu-primary"
+              />
+              <input
+                type="email"
+                placeholder="Tu correo electrónico"
+                value={commentForm.authorEmail}
+                onChange={e => setCommentForm(f => ({ ...f, authorEmail: e.target.value }))}
+                className="h-10 rounded-xl border border-slate-200 bg-white px-4 text-xs outline-none focus:border-edu-primary"
+              />
+            </div>
+            <textarea
+              placeholder="Escribí tu comentario..."
+              value={commentForm.content}
+              onChange={e => setCommentForm(f => ({ ...f, content: e.target.value }))}
+              rows={3}
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs outline-none focus:border-edu-primary resize-none"
+            />
+            <button
+              type="submit"
+              className="inline-flex h-10 items-center gap-2 rounded-xl bg-edu-primary px-5 text-xs font-bold text-white hover:bg-edu-secondary transition-all cursor-pointer"
+            >
+              <Send className="h-3.5 w-3.5" />
+              Publicar comentario
+            </button>
+          </form>
+
+          {/* Lista de comentarios */}
+          {comments.length === 0 ? (
+            <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-6 py-10 text-center">
+              <MessageSquare className="mx-auto h-6 w-6 text-slate-300" />
+              <p className="mt-3 text-sm text-slate-500">No hay comentarios aún. ¡Sé el primero!</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {comments.map(comment => (
+                <div key={comment.id} className="rounded-2xl border border-slate-100 bg-white p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <p className="text-sm font-bold text-slate-800">{comment.authorName}</p>
+                      <p className="text-[10px] text-slate-400">
+                        {new Date(comment.createdAt).toLocaleDateString('es-AR', {
+                          day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed text-slate-600">{comment.content}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
 
         {/* Sección de Artículos Relacionados */}
         <section className="max-w-5xl mx-auto">

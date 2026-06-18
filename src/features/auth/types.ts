@@ -8,6 +8,7 @@ export interface AuthSession {
   email: string;
   name: string;
   authSource: AuthSource;
+  mustChangePassword?: boolean;
 }
 
 export interface InstitutionalStudent {
@@ -57,6 +58,8 @@ export interface LocalDemoAccount {
 export interface RegisteredBackendUser {
   email: string;
   dni: string;
-  role: Extract<DemoUserRole, 'student' | 'teacher' | 'parent'>;
+  role: DemoUserRole;
   createdAt: string;
+  name: string;
+  mustChangePassword?: boolean;
 }

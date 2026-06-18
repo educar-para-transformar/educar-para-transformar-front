@@ -120,6 +120,12 @@ function getDisplayName(email: string) {
     return 'Director Demo';
   }
 
+  const registeredUser = findRegisteredUserByEmail(email);
+
+  if (registeredUser?.name) {
+    return registeredUser.name;
+  }
+
   const localAccount = findLocalDemoAccount(email);
 
   if (localAccount) {
@@ -287,6 +293,7 @@ export async function registerInstitutionalUser(input: {
     email: normalizedEmail,
     dni: normalizedDni,
     role: input.role,
+    name: normalizedEmail.split('@')[0],
     createdAt: new Date().toISOString(),
   };
 
@@ -354,6 +361,10 @@ export async function loginWithEmail(email: string, password: string) {
       name: displayName,
       authSource: 'local',
     };
+
+    if (registeredUser.mustChangePassword) {
+      session.mustChangePassword = true;
+    }
 
     saveSession(session);
     return session;
@@ -435,6 +446,7 @@ export async function createStudentAccount(
     email: normalizeEmail(payload.email),
     dni: normalizeDni(payload.dni),
     role: 'student',
+    name: `${payload.firstName} ${payload.lastName}`,
     createdAt: new Date().toISOString(),
   });
   return response.text();
@@ -455,6 +467,98 @@ export function getDefaultStudentPayload(
     division: student.division,
     educationalLevel: student.educationalLevel,
   };
+}
+
+export function createAdminUser(input: {
+  name: string;
+  email: string;
+  role: DemoUserRole;
+  dni: string;
+}): RegisteredBackendUser {
+  const normalizedEmail = normalizeEmail(input.email);
+  const normalizedDni = normalizeDni(input.dni);
+
+  if (!normalizedDni) {
+    throw new Error('El DNI es obligatorio.');
+  }
+
+  const existingRegistered = readRegisteredUsers();
+
+  const emailExists = existingRegistered.some((u) => u.email === normalizedEmail);
+  if (emailExists) {
+    throw new Error('El correo electrónico ya está registrado en el sistema.');
+  }
+
+  const emailInDemo = localDemoAccounts.some(
+    (a) => a.email.toLowerCase() === normalizedEmail,
+  );
+  if (emailInDemo) {
+    throw new Error('El correo electrónico ya está registrado en el sistema.');
+  }
+
+  if (normalizedEmail === ADMIN_EMAIL) {
+    throw new Error('El correo electrónico ya está registrado en el sistema.');
+  }
+
+  const emailInStudents = institutionalStudents.some(
+    (s) => s.email.toLowerCase() === normalizedEmail,
+  );
+  if (emailInStudents) {
+    throw new Error(
+      'El correo electrónico pertenece a un alumno institucional. Utilice el flujo de registro de alumnos.',
+    );
+  }
+
+  const dniExists = existingRegistered.some((u) => u.dni === normalizedDni);
+  if (dniExists) {
+    throw new Error('El DNI ya está registrado en el sistema.');
+  }
+
+  const dniInStudents = institutionalStudents.some(
+    (s) => s.dni === normalizedDni,
+  );
+  if (dniInStudents) {
+    throw new Error(
+      'El DNI pertenece a un alumno institucional. Utilice el flujo de registro de alumnos.',
+    );
+  }
+
+  const password = normalizedDni;
+
+  const user: RegisteredBackendUser = {
+    email: normalizedEmail,
+    dni: normalizedDni,
+    role: input.role,
+    name: input.name,
+    createdAt: new Date().toISOString(),
+    mustChangePassword: true,
+  };
+
+  saveRegisteredUser(user);
+  saveLocalCredential(normalizedEmail, password);
+
+  return user;
+}
+
+export function changeUserPassword(email: string, newPassword: string): void {
+  const normalizedEmail = normalizeEmail(email);
+  const users = readRegisteredUsers();
+  const user = users.find((u) => u.email === normalizedEmail);
+
+  if (!user) {
+    throw new Error('Usuario no encontrado.');
+  }
+
+  user.mustChangePassword = false;
+  writeRegisteredUsers(users);
+
+  saveLocalCredential(normalizedEmail, newPassword);
+
+  const session = getSession();
+  if (session) {
+    session.mustChangePassword = false;
+    saveSession(session);
+  }
 }
 
 export function getRoleHomePath(role: DemoUserRole) {

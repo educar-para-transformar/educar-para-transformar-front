@@ -11,16 +11,18 @@ import { LoginPage } from './pages/login/LoginPage';
 import { EnrollmentPage } from './pages/enrollment/EnrollmentPage';
 import { OpinionsPage } from './pages/opiniones/OpinionsPage';
 import { RegistrationPage } from './pages/registration/RegistrationPage';
+import { ActivitiesPage } from './pages/admin/ActivitiesPage';
+import { CommentsModerationPage } from './pages/admin/CommentsModerationPage';
 import { ScrollToTop } from './shared/components/ScrollToTop';
 import { AdminLayout } from './pages/admin/AdminLayout';
 import { GestionNoticiasPage } from './pages/admin/GestionNoticiasPage';
 import { CrearNoticiaPage } from './pages/admin/CrearNoticiaPage';
-import { StudentRegistrationPage } from './pages/admin/StudentRegistrationPage';
 import { EnrollmentRequestsPage } from './pages/admin/EnrollmentRequestsPage';
 import { OpinionModerationPage } from './pages/admin/OpinionModerationPage';
 import { CuentasDelSistemaPage } from './pages/admin/CuentasDelSistemaPage';
 import { ForoLayout } from './pages/foro/ForoLayout';
 import { ForoFeedPage } from './pages/foro/ForoFeedPage';
+import { StudentActivitiesPage } from './pages/student/StudentActivitiesPage';
 import { ForoThreadPage } from './pages/foro/ForoThreadPage';
 import { ForoProfilePage } from './pages/foro/ForoProfilePage';
 import { TeacherLayout } from './pages/teacher/TeacherLayout';
@@ -89,8 +91,9 @@ function App() {
           <Route path="noticias" element={<GestionNoticiasPage />} />
           <Route path="crear-noticia" element={<CrearNoticiaPage />} />
           <Route path="editar-noticia/:id" element={<CrearNoticiaPage />} />
-          <Route path="crear-usuario" element={<StudentRegistrationPage />} />
           <Route path="cuentas" element={<CuentasDelSistemaPage />} />
+          <Route path="actividades" element={<ActivitiesPage />} />
+          <Route path="comentarios" element={<CommentsModerationPage />} />
         </Route>
 
         <Route
@@ -104,6 +107,7 @@ function App() {
           <Route index element={<ForoFeedPage />} />
           <Route path="discusion/:id" element={<ForoThreadPage />} />
           <Route path="perfil" element={<ForoProfilePage />} />
+          <Route path="actividades" element={<StudentActivitiesPage />} />
         </Route>
 
         <Route

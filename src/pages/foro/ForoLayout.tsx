@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import {
+  Activity,
   ArrowLeft,
   Bell,
   LogOut,
@@ -51,6 +52,7 @@ export const ForoLayout: React.FC = () => {
     { label: 'Academico', path: '/privado/foro?category=AcadÃ©mico' },
     { label: 'Vida Escolar', path: '/privado/foro?category=Vida Escolar' },
     { label: 'Grupos de Estudio', path: '/privado/foro?category=Grupos de Estudio' },
+    { label: 'Actividades', path: '/privado/foro/actividades' },
     { label: 'Mi Perfil', path: '/privado/foro/perfil' },
   ];
 
@@ -164,6 +166,14 @@ export const ForoLayout: React.FC = () => {
                     >
                       <User size={14} />
                       <span>Ver Mi Perfil</span>
+                    </Link>
+                    <Link
+                      to="/privado/foro/actividades"
+                      onClick={() => setShowProfileMenu(false)}
+                      className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50 hover:text-edu-primary"
+                    >
+                      <Activity size={14} />
+                      <span>Actividades extracurriculares</span>
                     </Link>
                     <Link
                       to="/privado/foro"

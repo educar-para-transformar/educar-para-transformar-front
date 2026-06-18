@@ -6,6 +6,7 @@ import {
   Calendar,
   CheckCircle,
   Clock,
+  FileText,
   Image as ImageIcon,
   Save,
   Send,
@@ -45,9 +46,7 @@ export const CrearNoticiaPage: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
-    if (!isEditMode) {
-      return;
-    }
+    if (!isEditMode) return;
 
     const article = newsStore.getArticleById(Number(id));
     if (!article) {
@@ -109,18 +108,8 @@ export const CrearNoticiaPage: React.FC = () => {
       if (parts.length === 3) {
         const currentDate = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
         const months = [
-          'Enero',
-          'Febrero',
-          'Marzo',
-          'Abril',
-          'Mayo',
-          'Junio',
-          'Julio',
-          'Agosto',
-          'Septiembre',
-          'Octubre',
-          'Noviembre',
-          'Diciembre',
+          'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
         ];
         formattedDate = `${parts[2]} de ${months[currentDate.getMonth()]}, ${parts[0]}`;
       }
@@ -160,36 +149,34 @@ export const CrearNoticiaPage: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl animate-fadeIn">
-      <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+    <div className="mx-auto max-w-6xl">
+      <div className="mb-5 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <Link
           to="/privado/noticias"
-          className="group inline-flex cursor-pointer items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500 transition-colors hover:text-edu-secondary"
+          className="group inline-flex cursor-pointer items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-edu-muted transition-colors hover:text-edu-secondary"
         >
-          <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-          <span>Volver a la gestion</span>
+          <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
+          <span>Volver a gestión</span>
         </Link>
-
-        <div className="flex w-full items-center gap-3 sm:w-auto">
+        <div className="flex w-full items-center gap-2 sm:w-auto">
           <button
             type="button"
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="flex h-10 flex-grow items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 text-xs font-bold uppercase tracking-wider text-slate-700 transition-all hover:border-slate-300 hover:text-slate-900 sm:flex-grow-0"
+            className="flex h-9 flex-grow items-center justify-center gap-1.5 rounded-lg border border-edu-border bg-white px-4 text-[11px] font-bold uppercase tracking-wider text-slate-700 shadow-sm transition-all hover:border-slate-300 hover:text-slate-900 sm:flex-grow-0 cursor-pointer"
           >
-            <Save size={15} />
+            <Save size={14} />
             <span>Guardar</span>
           </button>
-
           <button
             type="button"
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="flex h-10 flex-grow items-center justify-center gap-2 rounded-lg bg-edu-secondary px-6 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all hover:bg-edu-primary disabled:bg-edu-secondary/70 sm:flex-grow-0"
+            className="flex h-9 flex-grow items-center justify-center gap-1.5 rounded-lg bg-edu-secondary px-5 text-[11px] font-bold uppercase tracking-wider text-white shadow-sm shadow-edu-secondary/20 transition-all hover:bg-edu-secondary-dark disabled:bg-edu-secondary/70 sm:flex-grow-0 cursor-pointer"
           >
             {isSubmitting ? (
               <>
-                <svg className="h-4 w-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                <svg className="h-3.5 w-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
@@ -197,41 +184,37 @@ export const CrearNoticiaPage: React.FC = () => {
               </>
             ) : (
               <>
-                <Send size={15} />
-                <span>Publicar Noticia</span>
+                <Send size={14} />
+                <span>Publicar</span>
               </>
             )}
           </button>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-8 lg:flex-row">
-        <div className="flex-grow space-y-6 lg:max-w-3xl">
-          <div className="space-y-4 rounded-xl border border-slate-200/60 bg-white p-6 shadow-sm">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 lg:flex-row">
+        <div className="flex-grow space-y-5 lg:max-w-3xl">
+          <div className="space-y-4 rounded-xl border border-edu-border/60 bg-white p-5 shadow-sm">
             <div className="space-y-1">
-              <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-400">
-                Titulo de la noticia
+              <label className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-wide text-edu-muted">
+                <FileText size={12} /> Título de la noticia
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
-                placeholder="Escribe un titulo atractivo..."
-                className="w-full border-none bg-transparent px-0 text-xl font-bold text-edu-primary placeholder:text-slate-300 focus:outline-none md:text-2xl"
+                placeholder="Escribe un título atractivo..."
+                className="w-full border-none bg-transparent px-0 text-lg font-bold text-edu-primary placeholder:text-slate-300 focus:outline-none md:text-xl"
                 required
               />
             </div>
-
-            <hr className="border-slate-100" />
-
+            <hr className="border-edu-border/60" />
             <div className="space-y-1">
-              <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-400">
-                Copete / introduccion
-              </label>
+              <label className="block text-[9px] font-bold uppercase tracking-wide text-edu-muted">Copete / introducción</label>
               <textarea
                 value={lead}
                 onChange={(event) => setLead(event.target.value)}
-                placeholder="Amplia el contexto principal de la noticia..."
+                placeholder="Amplía el contexto principal de la noticia..."
                 className="w-full resize-none border-none bg-transparent px-0 text-sm font-medium text-slate-600 placeholder:text-slate-300 focus:outline-none"
                 rows={3}
                 required
@@ -239,119 +222,92 @@ export const CrearNoticiaPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-6 rounded-xl border border-slate-200/60 bg-white p-6 shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-700">
-                <BookOpen size={16} className="text-edu-secondary" />
+          <div className="space-y-5 rounded-xl border border-edu-border/60 bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between border-b border-edu-border/60 pb-3">
+              <h3 className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-slate-700">
+                <BookOpen size={14} className="text-edu-secondary" />
                 <span>Cuerpo y cita destacada</span>
               </h3>
-              <span className="text-[10px] text-slate-400">
-                Separa parrafos con doble salto de linea
-              </span>
+              <span className="text-[9px] text-edu-muted">Párrafos separados con doble salto</span>
             </div>
-
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-400">
-                Contenido principal
-              </label>
+              <label className="block text-[9px] font-bold uppercase tracking-wide text-edu-muted">Contenido principal</label>
               <textarea
                 value={contentBody}
                 onChange={(event) => setContentBody(event.target.value)}
                 placeholder="Escribe el cuerpo completo de la noticia..."
-                className="min-h-[300px] w-full rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 placeholder:text-slate-400 focus:border-edu-secondary focus:outline-none focus:ring-2 focus:ring-edu-secondary/20"
+                className="min-h-[260px] w-full rounded-lg border border-edu-border bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 placeholder:text-slate-400 transition-all focus:border-edu-secondary focus:outline-none focus:ring-2 focus:ring-edu-secondary/20 focus:bg-white"
                 required
               />
             </div>
-
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold uppercase tracking-wide text-slate-400">
-                Cita destacada
-              </label>
+              <label className="block text-[9px] font-bold uppercase tracking-wide text-edu-muted">Cita destacada</label>
               <textarea
                 value={blockquote}
                 onChange={(event) => setBlockquote(event.target.value)}
-                placeholder="Agrega una frase o testimonio para resaltar."
-                className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50 p-4 text-xs italic text-slate-600 focus:border-edu-secondary focus:outline-none focus:ring-2 focus:ring-edu-secondary/20"
+                placeholder="Agrega una frase o testimonio para resaltar..."
+                className="w-full resize-none rounded-lg border border-edu-border bg-slate-50 p-3 text-xs italic text-slate-600 transition-all focus:border-edu-secondary focus:outline-none focus:ring-2 focus:ring-edu-secondary/20 focus:bg-white"
                 rows={2}
               />
             </div>
           </div>
         </div>
 
-        <div className="w-full shrink-0 space-y-6 lg:w-[340px]">
-          <div className="space-y-4 rounded-xl border border-slate-200/60 bg-white p-5 shadow-sm">
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
-              Imagen principal
+        <div className="w-full shrink-0 space-y-5 lg:w-[300px]">
+          <div className="space-y-4 rounded-xl border border-edu-border/60 bg-white p-5 shadow-sm">
+            <label className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-wider text-edu-muted">
+              <ImageIcon size={12} /> Imagen principal
             </label>
-
-            <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+            <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-edu-border bg-slate-50">
               {image ? (
                 <img src={image} alt="Preview" className="h-full w-full object-cover" />
               ) : (
                 <div className="p-4 text-center">
-                  <ImageIcon size={32} className="mx-auto mb-2 text-slate-300" />
-                  <p className="text-[10px] text-slate-400">Sin imagen de portada</p>
+                  <ImageIcon size={28} className="mx-auto mb-1.5 text-slate-300" />
+                  <p className="text-[10px] text-edu-muted">Sin imagen de portada</p>
                 </div>
               )}
             </div>
-
-            <div className="space-y-2">
-              <label className="block text-[9px] font-bold uppercase tracking-wide text-slate-400">
-                URL de la imagen
-              </label>
-              <input
-                type="text"
-                value={image}
-                onChange={(event) => setImage(event.target.value)}
-                placeholder="https://ejemplo.com/imagen.jpg"
-                className="h-9 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs text-slate-700 focus:border-edu-secondary focus:outline-none focus:ring-1 focus:ring-edu-secondary"
-              />
-            </div>
-
-            <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-200">
-              <Upload size={14} />
+            <input
+              type="text"
+              value={image}
+              onChange={(event) => setImage(event.target.value)}
+              placeholder="https://ejemplo.com/imagen.jpg"
+              className="h-9 w-full rounded-lg border border-edu-border bg-white px-3 text-xs text-slate-700 outline-none transition-all focus:border-edu-secondary focus:ring-1 focus:ring-edu-secondary"
+            />
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-2 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-200">
+              <Upload size={13} />
               <span>Subir portada</span>
               <input type="file" accept="image/*" className="hidden" onChange={handleCoverUpload} />
             </label>
           </div>
 
-          <div className="space-y-4 rounded-xl border border-slate-200/60 bg-white p-5 shadow-sm">
+          <div className="space-y-4 rounded-xl border border-edu-border/60 bg-white p-5 shadow-sm">
             <div className="flex items-center justify-between">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                Imagenes internas
-              </label>
-              <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-200">
-                <Upload size={14} />
+              <span className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-wider text-edu-muted">
+                <ImageIcon size={12} /> Imágenes internas
+              </span>
+              <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-1.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-200">
+                <Upload size={13} />
                 <span>Agregar</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="hidden"
-                  onChange={handleInlineUpload}
-                />
+                <input type="file" accept="image/*" multiple className="hidden" onChange={handleInlineUpload} />
               </label>
             </div>
-
             {inlineImages.length === 0 ? (
-              <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 px-4 py-6 text-center text-xs text-slate-400">
-                Todavia no agregaste imagenes para el cuerpo de la noticia.
+              <div className="rounded-lg border border-dashed border-edu-border bg-slate-50 px-4 py-5 text-center text-xs text-edu-muted">
+                Sin imágenes internas aún.
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2">
                 {inlineImages.map((inlineImage, index) => (
-                  <div key={`${inlineImage.slice(0, 20)}-${index}`} className="space-y-2">
-                    <img
-                      src={inlineImage}
-                      alt={`Inline ${index + 1}`}
-                      className="aspect-video w-full rounded-lg object-cover"
-                    />
+                  <div key={`${inlineImage.slice(0, 20)}-${index}`} className="space-y-1.5">
+                    <img src={inlineImage} alt="" className="aspect-video w-full rounded-lg object-cover" />
                     <button
                       type="button"
                       onClick={() => removeInlineImage(index)}
-                      className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-red-600 transition hover:text-red-700"
+                      className="inline-flex cursor-pointer items-center gap-1 text-[9px] font-bold uppercase tracking-wide text-red-600 transition hover:text-red-700"
                     >
-                      <Trash2 size={12} />
+                      <Trash2 size={11} />
                       <span>Quitar</span>
                     </button>
                   </div>
@@ -360,58 +316,45 @@ export const CrearNoticiaPage: React.FC = () => {
             )}
           </div>
 
-          <div className="space-y-4 rounded-xl border border-slate-200/60 bg-white p-5 shadow-sm">
-            <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                Categoria
-              </label>
-              <select
-                value={category}
-                onChange={(event) => setCategory(event.target.value as ArticleCategory)}
-                className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs text-slate-700 outline-none transition-all focus:border-edu-secondary focus:ring-2 focus:ring-edu-secondary"
-              >
+          <div className="space-y-3 rounded-xl border border-edu-border/60 bg-white p-5 shadow-sm">
+            <div className="space-y-1">
+              <label className="block text-[9px] font-bold uppercase tracking-wider text-edu-muted">Categoría</label>
+              <select value={category} onChange={(event) => setCategory(event.target.value as ArticleCategory)} className="h-9 w-full rounded-lg border border-edu-border bg-white px-3 text-xs text-slate-700 outline-none transition-all focus:border-edu-secondary focus:ring-2 focus:ring-edu-secondary">
                 <option value="Institucional">Institucional</option>
-                <option value="AcadÃ©mico">Académico</option>
+                <option value="Académico">Académico</option>
                 <option value="Comunidad">Comunidad</option>
                 <option value="Deportes">Deportes</option>
                 <option value="Eventos">Eventos</option>
               </select>
             </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                Autor
-              </label>
+            <div className="space-y-1">
+              <label className="block text-[9px] font-bold uppercase tracking-wider text-edu-muted">Autor</label>
               <div className="relative">
                 <input
                   type="text"
                   value={author}
                   onChange={(event) => setAuthor(event.target.value)}
-                  className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-3 text-xs text-slate-700 outline-none focus:border-edu-secondary focus:ring-2 focus:ring-edu-secondary"
+                  className="h-9 w-full rounded-lg border border-edu-border bg-white pl-8 pr-3 text-xs text-slate-700 outline-none transition-all focus:border-edu-secondary focus:ring-2 focus:ring-edu-secondary"
                 />
-                <User size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <User size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-edu-muted" />
               </div>
             </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                Fecha de publicacion
-              </label>
+            <div className="space-y-1">
+              <label className="block text-[9px] font-bold uppercase tracking-wider text-edu-muted">Fecha</label>
               <div className="relative">
                 <input
                   type="date"
                   value={date}
                   onChange={(event) => setDate(event.target.value)}
-                  className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-3 text-xs text-slate-700 outline-none focus:border-edu-secondary focus:ring-2 focus:ring-edu-secondary"
+                  className="h-9 w-full rounded-lg border border-edu-border bg-white pl-8 pr-3 text-xs text-slate-700 outline-none transition-all focus:border-edu-secondary focus:ring-2 focus:ring-edu-secondary"
                 />
-                <Calendar size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Calendar size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-edu-muted" />
               </div>
             </div>
-
-            <div className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 p-3">
-              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase text-slate-500">
-                <Clock size={14} className="text-slate-400" />
-                <span>Tiempo de lectura</span>
+            <div className="flex items-center justify-between rounded-lg border border-edu-border bg-gradient-to-br from-slate-50 to-white p-2.5">
+              <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase text-edu-muted">
+                <Clock size={12} className="text-edu-muted" />
+                <span>Lectura</span>
               </div>
               <span className="text-xs font-bold text-edu-primary">{readTime}</span>
             </div>
@@ -420,29 +363,29 @@ export const CrearNoticiaPage: React.FC = () => {
       </form>
 
       {showSuccessModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-sm animate-scaleUp space-y-4 rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-2xl">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-green-600 shadow-sm">
-              <CheckCircle size={26} />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm space-y-4 rounded-2xl border border-edu-border bg-white p-5 text-center shadow-2xl">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-green-100 to-green-50 text-green-600 shadow-sm">
+              <CheckCircle size={24} />
             </div>
-            <p className="text-lg font-bold text-slate-800">
+            <p className="text-base font-bold text-slate-800">
               {isEditMode ? 'Noticia actualizada' : 'Noticia publicada'}
             </p>
-            <p className="text-sm leading-relaxed text-slate-500">
-              Los cambios ya quedaron guardados en la gestion local del MVP.
+            <p className="text-xs leading-relaxed text-edu-muted">
+              Los cambios quedaron guardados en la gestión local.
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <button
                 type="button"
                 onClick={() => navigate('/privado/noticias')}
-                className="inline-flex h-11 items-center justify-center rounded-xl bg-edu-primary px-4 text-sm font-semibold text-white transition hover:bg-edu-secondary"
+                className="inline-flex h-10 items-center justify-center rounded-xl bg-edu-primary px-4 text-xs font-semibold text-white shadow-sm transition hover:bg-edu-secondary cursor-pointer"
               >
                 Volver a noticias
               </button>
               <button
                 type="button"
                 onClick={() => setShowSuccessModal(false)}
-                className="inline-flex h-11 items-center justify-center rounded-xl bg-slate-100 px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
+                className="inline-flex h-10 items-center justify-center rounded-xl bg-slate-100 px-4 text-xs font-semibold text-slate-700 transition hover:bg-slate-200 cursor-pointer"
               >
                 Seguir editando
               </button>

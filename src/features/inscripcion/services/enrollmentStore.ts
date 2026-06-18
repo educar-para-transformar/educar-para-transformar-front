@@ -222,3 +222,26 @@ export function markEnrollmentAccountCreatedByDni(dni: string) {
 
   return updateEnrollmentStatus(target.id, 'account_created');
 }
+
+export function updateEnrollmentRequest(id: string, input: Partial<EnrollmentRequestInput>) {
+  const requests = readRequests();
+  const index = requests.findIndex(item => item.id === id);
+
+  if (index === -1) {
+    return null;
+  }
+
+  requests[index] = { ...requests[index], ...input };
+  writeRequests(requests);
+  return requests[index];
+}
+
+export function deleteEnrollmentRequest(id: string) {
+  const requests = readRequests().filter(item => item.id !== id);
+  writeRequests(requests);
+  return requests;
+}
+
+export function getEnrollmentRequestById(id: string) {
+  return readRequests().find(item => item.id === id) ?? null;
+}

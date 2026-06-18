@@ -2,13 +2,24 @@
 
 @theme {
   --color-edu-primary: #051124;
+  --color-edu-primary-light: #0a1e3d;
   --color-edu-secondary: #0052cc;
+  --color-edu-secondary-light: #2563eb;
+  --color-edu-secondary-dark: #003d99;
   --color-edu-accent: #a9cce3;
+  --color-edu-accent-warm: #f0c27a;
   --color-edu-light: #d6eaf8;
   --color-edu-dark: #030b18;
   --color-edu-card: #f8fafc;
   --color-edu-bg: #fafaf9;
-  
+  --color-edu-surface: #ffffff;
+  --color-edu-muted: #94a3b8;
+  --color-edu-border: #e2e8f0;
+  --color-edu-success: #059669;
+  --color-edu-warning: #d97706;
+  --color-edu-danger: #dc2626;
+  --color-edu-info: #0284c7;
+
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, serif;
   --font-hanken: 'Hanken Grotesk', 'Inter', system-ui, sans-serif;
@@ -18,4 +29,17 @@
   body {
     @apply text-edu-dark bg-edu-bg font-sans antialiased;
   }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-edu-secondary/50;
+  }
+
+  ::selection {
+    @apply bg-edu-secondary/15 text-edu-primary;
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: theme(--color-edu-border) transparent;
 }

@@ -33,14 +33,17 @@ function readOpinions() {
   const raw = localStorage.getItem(OPINIONS_STORAGE_KEY);
 
   if (!raw) {
-    localStorage.setItem(OPINIONS_STORAGE_KEY, JSON.stringify(SEEDED_OPINIONS));
-    return SEEDED_OPINIONS;
+    const clone = JSON.parse(JSON.stringify(SEEDED_OPINIONS)) as PublicOpinion[];
+    localStorage.setItem(OPINIONS_STORAGE_KEY, JSON.stringify(clone));
+    return clone;
   }
 
   try {
     return JSON.parse(raw) as PublicOpinion[];
   } catch {
-    return SEEDED_OPINIONS;
+    const clone = JSON.parse(JSON.stringify(SEEDED_OPINIONS)) as PublicOpinion[];
+    localStorage.setItem(OPINIONS_STORAGE_KEY, JSON.stringify(clone));
+    return clone;
   }
 }
 

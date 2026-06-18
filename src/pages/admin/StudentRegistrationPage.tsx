@@ -7,7 +7,7 @@ import {
   KeyRound,
   LoaderCircle,
   Search,
-  UserRoundSearch,
+  Sparkles,
 } from 'lucide-react';
 import {
   createStudentAccount,
@@ -92,170 +92,126 @@ export const StudentRegistrationPage: React.FC = () => {
   }
 
   return (
-    <div className="animate-fadeIn space-y-6">
-      <section className="rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
-        <div className="max-w-3xl space-y-3 text-left">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#0f52ba]/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-[#0f52ba]">
-            <UserRoundSearch className="h-4 w-4" />
+    <div className="space-y-5">
+      <section className="relative overflow-hidden rounded-2xl border border-edu-border/60 bg-gradient-to-br from-white via-white to-edu-secondary/[0.02] p-5 shadow-sm">
+        <div className="max-w-3xl space-y-2">
+          <span className="inline-flex items-center gap-1.5 rounded-lg bg-edu-secondary/8 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-edu-secondary">
+            <Sparkles className="h-3.5 w-3.5" />
             Crear cuenta de alumno
           </span>
-          <h1 className="text-2xl font-bold text-edu-primary">
-            Crear cuenta desde el padron institucional
+          <h1 className="text-lg font-bold text-edu-primary">
+            Desde el padrón institucional
           </h1>
-          <p className="text-sm leading-relaxed text-slate-500">
-            Este flujo prueba exactamente lo que hoy soporta el backend: validar
-            el DNI en frontend, crear al alumno con
-            <code className="mx-1 rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-700">
-              POST /students
-            </code>
-            y dejar las credenciales listas para el segundo login.
-          </p>
-          <p className="text-xs font-medium text-slate-500">
-            En esta pantalla el alta disponible es solo para
-            <strong className="mx-1 text-slate-700">Alumno</strong>. Las cuentas de
-            <strong className="mx-1 text-slate-700">Docente</strong> y
-            <strong className="mx-1 text-slate-700">Autoridad</strong> quedan fuera
-            porque el backend actual no expone ese flujo.
+          <p className="text-xs leading-relaxed text-edu-muted">
+            Validá el DNI en el padrón y creá la cuenta. Las credenciales quedan listas para el login.
           </p>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
-        <div className="rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
-          <form onSubmit={handleSearch} className="space-y-4">
-            <div className="space-y-1.5 text-left">
-              <label className="block text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
+      <section className="grid gap-5 lg:grid-cols-[1fr_0.95fr]">
+        <div className="rounded-2xl border border-edu-border/60 bg-white p-5 shadow-sm">
+          <form onSubmit={handleSearch} className="space-y-3">
+            <div className="space-y-1">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-edu-muted">
                 DNI del alumno
               </label>
               <div className="relative">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-edu-muted" />
                 <input
                   type="text"
                   inputMode="numeric"
                   value={dni}
                   onChange={(event) => setDni(event.target.value.replace(/\D/g, ''))}
                   placeholder="46463269"
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm text-slate-800 outline-none transition focus:border-[#0f52ba] focus:bg-white focus:ring-2 focus:ring-[#0f52ba]/15"
+                  className="h-10 w-full rounded-xl border border-edu-border bg-slate-50 pl-9 pr-4 text-xs text-slate-800 outline-none transition focus:border-edu-secondary focus:bg-white focus:ring-2 focus:ring-edu-secondary/15"
                 />
               </div>
             </div>
-
             <button
               type="submit"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-[#0f52ba] px-5 text-sm font-semibold text-white transition hover:bg-[#0c449e]"
+              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-edu-secondary px-4 text-xs font-semibold text-white shadow-sm shadow-edu-secondary/20 transition hover:bg-edu-secondary-dark cursor-pointer"
             >
-              <Search className="h-4 w-4" />
-              Consultar padron
+              <Search className="h-3.5 w-3.5" />
+              Consultar padrón
             </button>
           </form>
 
           {error && (
-            <div className="mt-5 flex items-start gap-2 rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-700">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+            <div className="mt-4 flex items-start gap-2 rounded-xl border border-red-100 bg-gradient-to-r from-red-50 to-white px-4 py-3 text-xs text-red-700">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-red-200/50">
+                <AlertTriangle className="h-3 w-3" />
+              </div>
               <span>{error}</span>
             </div>
           )}
 
           {successMessage && (
-            <div className="mt-5 flex items-start gap-2 rounded-2xl border border-green-100 bg-green-50 px-4 py-3 text-sm text-green-700">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+            <div className="mt-4 flex items-start gap-2 rounded-xl border border-green-100 bg-gradient-to-r from-green-50 to-white px-4 py-3 text-xs text-green-700">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-green-200/50">
+                <CheckCircle2 className="h-3 w-3" />
+              </div>
               <span>{successMessage}</span>
             </div>
           )}
         </div>
 
-        <div className="rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-edu-border/60 bg-white p-5 shadow-sm">
           {!student ? (
-            <div className="flex min-h-[260px] h-full flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/80 px-6 text-center">
-              <BadgeCheck className="mb-4 h-8 w-8 text-slate-300" />
-              <p className="text-sm font-semibold text-slate-700">
-                No encontramos el DNI en el padron demo.
+            <div className="flex min-h-[240px] h-full flex-col items-center justify-center rounded-xl border border-dashed border-edu-border bg-slate-50/80 px-6 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-edu-secondary/10 to-edu-primary/5">
+                <BadgeCheck className="h-6 w-6 text-edu-secondary/60" />
+              </div>
+              <p className="mt-3 text-sm font-bold text-slate-700">
+                No encontramos el DNI en el padrón demo.
               </p>
-              <p className="mt-2 max-w-sm text-xs leading-relaxed text-slate-500">
-                Proba con el alumno institucional cargado para esta prueba:
-                <strong className="mx-1 text-slate-700">46463269</strong>.
+              <p className="mt-1.5 max-w-sm text-xs text-edu-muted">
+                Probá con: <strong className="text-slate-700">46463269</strong>
               </p>
             </div>
           ) : (
-            <div className="space-y-5 text-left">
+            <div className="space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                    Alumno encontrado
-                  </p>
-                  <h2 className="mt-1 text-xl font-bold text-slate-800">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-edu-muted">Alumno encontrado</p>
+                  <h2 className="mt-0.5 text-base font-bold text-slate-800">
                     {student.firstName} {student.lastName}
                   </h2>
                 </div>
-                <span
-                  className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                    student.hasAccount
-                      ? 'bg-amber-100 text-amber-700'
-                      : 'bg-emerald-100 text-emerald-700'
-                  }`}
-                >
-                  {student.hasAccount ? 'Cuenta creada' : 'Sin cuenta'}
+                <span className={`rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${
+                  student.hasAccount
+                    ? 'bg-amber-50 text-amber-700 border border-amber-200/50'
+                    : 'bg-emerald-50 text-emerald-700 border border-emerald-200/50'
+                }`}>
+                  {student.hasAccount ? 'Con cuenta' : 'Sin cuenta'}
                 </span>
               </div>
 
-              <dl className="grid gap-3 rounded-2xl bg-slate-50 p-4 sm:grid-cols-2">
+              <dl className="grid gap-3 rounded-xl bg-gradient-to-br from-slate-50 to-white p-4 sm:grid-cols-2 border border-edu-border/40">
                 <div>
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                    DNI
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    {student.dni}
-                  </dd>
+                  <dt className="text-[9px] font-bold uppercase tracking-wider text-edu-muted">DNI</dt>
+                  <dd className="mt-0.5 text-xs font-medium text-slate-700">{student.dni}</dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                    Correo demo
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    {student.email}
-                  </dd>
+                  <dt className="text-[9px] font-bold uppercase tracking-wider text-edu-muted">Correo</dt>
+                  <dd className="mt-0.5 text-xs font-medium text-slate-700">{student.email}</dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                    Curso
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    {student.schoolYear} {student.division}
-                  </dd>
+                  <dt className="text-[9px] font-bold uppercase tracking-wider text-edu-muted">Curso</dt>
+                  <dd className="mt-0.5 text-xs font-medium text-slate-700">{student.schoolYear} {student.division}</dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                    Nivel
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    {student.educationalLevel}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                    Rol asignado
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-slate-700">
-                    Alumno
-                  </dd>
+                  <dt className="text-[9px] font-bold uppercase tracking-wider text-edu-muted">Nivel</dt>
+                  <dd className="mt-0.5 text-xs font-medium text-slate-700">{student.educationalLevel}</dd>
                 </div>
               </dl>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                  Credenciales que quedaran listas
-                </p>
-                <div className="mt-3 flex items-start gap-3">
-                  <KeyRound className="mt-0.5 h-4 w-4 text-[#0f52ba]" />
-                  <div className="space-y-1 text-sm text-slate-600">
-                    <p>
-                      <strong className="text-slate-800">Correo:</strong>{' '}
-                      {student.email}
-                    </p>
-                    <p>
-                      <strong className="text-slate-800">Contrasena:</strong>{' '}
-                      programacion2026
-                    </p>
+              <div className="rounded-xl border border-edu-border bg-gradient-to-br from-edu-secondary/[0.02] to-white p-3.5">
+                <p className="text-[9px] font-bold uppercase tracking-wider text-edu-muted">Credenciales</p>
+                <div className="mt-2 flex items-start gap-2.5">
+                  <KeyRound className="mt-0.5 h-4 w-4 text-edu-secondary" />
+                  <div className="space-y-1 text-xs text-slate-600">
+                    <p><strong className="text-slate-800">Correo:</strong> {student.email}</p>
+                    <p><strong className="text-slate-800">Contraseña:</strong> programacion2026</p>
                   </div>
                 </div>
               </div>
@@ -264,11 +220,11 @@ export const StudentRegistrationPage: React.FC = () => {
                 type="button"
                 disabled={student.hasAccount || isSubmitting}
                 onClick={handleCreateAccount}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-[#0f52ba] px-5 text-sm font-semibold text-white transition hover:bg-[#0c449e] disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-edu-secondary px-4 text-xs font-semibold text-white shadow-sm shadow-edu-secondary/20 transition hover:bg-edu-secondary-dark disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
-                    <LoaderCircle className="h-4 w-4 animate-spin" />
+                    <LoaderCircle className="h-3.5 w-3.5 animate-spin" />
                     Creando cuenta...
                   </>
                 ) : student.hasAccount ? (
