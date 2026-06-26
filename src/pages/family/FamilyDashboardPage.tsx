@@ -46,7 +46,7 @@ export const FamilyDashboardPage: React.FC = () => {
             key={highlight}
             className="rounded-3xl border border-slate-200/70 bg-white p-5 shadow-sm"
           >
-            <HeartHandshake className="h-5 w-5 text-[#0f52ba]" />
+            <HeartHandshake className="h-5 w-5 text-edu-primary" />
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               {highlight}
             </p>
@@ -56,7 +56,7 @@ export const FamilyDashboardPage: React.FC = () => {
 
       <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <article className="rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-[#0f52ba]">
+          <div className="flex items-center gap-2 text-edu-primary">
             <UserSquare2 className="h-5 w-5" />
             <h2 className="text-lg font-bold text-slate-800">Alumno asociado</h2>
           </div>
@@ -95,7 +95,7 @@ export const FamilyDashboardPage: React.FC = () => {
         </article>
 
         <article className="space-y-4 rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-[#0f52ba]">
+          <div className="flex items-center gap-2 text-edu-primary">
             <CalendarClock className="h-5 w-5" />
             <h2 className="text-lg font-bold text-slate-800">Recordatorios</h2>
           </div>
@@ -109,9 +109,9 @@ export const FamilyDashboardPage: React.FC = () => {
           ))}
           <Link
             to="/noticias"
-            className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-[#0f52ba]/30"
+            className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-edu-primary/30"
           >
-            <Newspaper className="h-4 w-4 text-[#0f52ba]" />
+            <Newspaper className="h-4 w-4 text-edu-primary" />
             <span>Ir a noticias institucionales</span>
           </Link>
         </article>

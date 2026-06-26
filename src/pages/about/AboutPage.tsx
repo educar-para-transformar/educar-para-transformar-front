@@ -48,7 +48,7 @@ export const AboutPage: React.FC = () => {
           <img src={imagenCampusNeutral} alt="Vista panorámica de nuestras instalaciones" className="absolute inset-0 w-full h-full object-cover opacity-35" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-edu-primary/40" />
           <div className="max-w-4xl mx-auto relative z-10">
-            <span className="text-xs uppercase font-bold tracking-widest text-edu-accent bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm mb-4 inline-block">Institucional</span>
+            <span className="text-xs uppercase font-bold tracking-widest text-edu-secondary-light bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm mb-4 inline-block">Institucional</span>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 drop-shadow-sm">Quiénes Somos</h1>
             <p className="text-slate-100 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">Conoce el propósito, el proyecto educativo y el equipo humano detrás del Centro Educativo "Educar para Transformar", comprometido con el futuro de Resistencia.</p>
           </div>
@@ -119,7 +119,7 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* 5. PROYECTO EDUCATIVO (Timeline) */}
-      <section className="py-20 bg-white border-t border-b border-slate-200/40">
+      <section className="py-20 bg-white border-t border-b border-slate-300/50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3">Nuestro camino</h2>
@@ -171,7 +171,7 @@ export const AboutPage: React.FC = () => {
         <div className="max-w-3xl mx-auto space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold">¿Querés ser parte de esta transformación?</h2>
           <p className="text-lg opacity-90">Explora nuestra propuesta académica y descubrí cómo estamos digitalizando la gestión educativa para tu comodidad.</p>
-          <a href="/admisiones" className="inline-flex items-center gap-2 bg-edu-accent text-edu-primary px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+          <a href="/admisiones" className="inline-flex items-center gap-2 border-2 border-edu-accent bg-edu-primary text-edu-accent px-8 py-4 rounded-full font-bold hover:bg-edu-accent hover:text-edu-primary transition-all duration-300 hover:scale-105">
             Conocer nuestra propuesta <ArrowRight size={20} />
           </a>
         </div>

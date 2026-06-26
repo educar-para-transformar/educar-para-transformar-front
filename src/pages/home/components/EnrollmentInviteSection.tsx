@@ -25,22 +25,22 @@ export const EnrollmentInviteSection: React.FC = () => {
     <section className="mx-auto max-w-6xl px-4 py-12">
       <div className="overflow-hidden rounded-[28px] border border-slate-200/70 bg-white shadow-sm">
         <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="bg-[#0f52ba] px-6 py-8 text-white md:px-10">
+          <div className="bg-edu-primary px-6 py-8 text-white md:px-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em]">
               <BookOpenCheck className="h-4 w-4" />
-              Inscripcion abierta
+              Inscripción abierta
             </span>
             <h2 className="mt-4 max-w-lg text-2xl font-bold tracking-tight md:text-3xl">
-              Solicitud de inscripcion con una experiencia clara y cuidada.
+              Solicitud de inscripción con una experiencia clara y cuidada.
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/82">
-              Sumamos una ruta publica propia para iniciar el contacto con la
+              Sumamos una ruta pública propia para iniciar el contacto con la
               institucion, manteniendo el estilo del sitio y un flujo ordenado
               para familias aspirantes.
             </p>
             <Link
               to="/inscripcion"
-              className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-[#0f52ba] transition hover:bg-slate-100"
+              className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-edu-primary transition hover:bg-slate-100"
             >
               <span>Ir al formulario</span>
               <ArrowRight className="h-4 w-4" />
@@ -54,7 +54,7 @@ export const EnrollmentInviteSection: React.FC = () => {
                 className="rounded-2xl border border-slate-200/70 bg-slate-50 px-4 py-4 text-left"
               >
                 <div className="flex items-start gap-3">
-                  <div className="rounded-2xl bg-[#0f52ba]/10 p-2 text-[#0f52ba]">
+                  <div className="rounded-2xl bg-edu-primary/10 p-2 text-edu-primary">
                     {step.icon}
                   </div>
                   <div>

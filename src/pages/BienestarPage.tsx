@@ -78,8 +78,8 @@ export const BienestarPage: React.FC = () => {
       icon: <GraduationCap size={20} />, 
       title: 'Excelencia y Desarrollo Cognitivo',
       desc: 'Nos enfocamos en brindar herramientas clave para el autoaprendizaje continuo, estimulando el pensamiento crítico, la curiosidad científica y el máximo rendimiento pedagógico adaptado a cada etapa del estudiante.',
-      colorClass: 'text-blue-600 bg-blue-50 border-blue-200',
-      accentBg: 'bg-blue-600'
+      colorClass: 'text-edu-primary bg-edu-secondary/10 border-edu-secondary/30',
+      accentBg: 'bg-edu-primary'
     },
     { 
       id: 'Emocional', 
@@ -87,8 +87,8 @@ export const BienestarPage: React.FC = () => {
       icon: <Smile size={20} />, 
       title: 'Acompañamiento y Resiliencia',
       desc: 'Gestionamos espacios seguros para el autoconocimiento, la inteligencia emocional y el desarrollo de la autoestima. Nuestro equipo psicopedagógico acompaña activamente para contener y dotar de herramientas de resolución afectiva.',
-      colorClass: 'text-pink-600 bg-pink-50 border-pink-200',
-      accentBg: 'bg-pink-600'
+      colorClass: 'text-edu-magenta bg-edu-magenta/10 border-edu-magenta/25',
+      accentBg: 'bg-edu-magenta'
     },
     { 
       id: 'Social', 
@@ -96,8 +96,8 @@ export const BienestarPage: React.FC = () => {
       icon: <MessageSquare size={20} />, 
       title: 'Convivencia y Sentido de Comunidad',
       desc: 'Fomentamos la construcción de vínculos sanos, la empatía, los valores ciudadanos y el trabajo colaborativo. Impulsamos actividades colectivas donde cada estudiante aprende el valor del respeto mutuo y la vida en sociedad.',
-      colorClass: 'text-purple-600 bg-purple-50 border-purple-200',
-      accentBg: 'bg-purple-600'
+      colorClass: 'text-edu-secondary-dark bg-edu-secondary/10 border-edu-secondary/30',
+      accentBg: 'bg-edu-secondary-dark'
     },
     { 
       id: 'Físico', 
@@ -105,8 +105,8 @@ export const BienestarPage: React.FC = () => {
       icon: <Activity size={20} />, 
       title: 'Hábitos Saludables y Vitalidad',
       desc: 'Promovemos el bienestar corporal a través de la educación física, disciplinas deportivas y una nutrición balanceada. Entendemos el movimiento y el cuidado del cuerpo como pilares fundamentales para un cerebro activo y sano.',
-      colorClass: 'text-amber-600 bg-amber-50 border-amber-200',
-      accentBg: 'bg-amber-600'
+      colorClass: 'text-edu-accent-warm bg-edu-accent-warm/10 border-edu-accent-warm/30',
+      accentBg: 'bg-edu-accent-warm'
     }
   ];
 
@@ -143,7 +143,7 @@ export const BienestarPage: React.FC = () => {
           <img src={imagenHero} alt="" className='absolute inset-0 w-full h-full object-cover opacity-25 scale-105' />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
           <div className="max-w-3xl mx-auto relative z-10">
-            <span className="text-xs uppercase font-bold tracking-widest text-edu-accent bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm mb-4 inline-block">Institucional</span>
+            <span className="text-xs uppercase font-bold tracking-widest text-edu-secondary-light bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm mb-4 inline-block">Institucional</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-sm">Bienestar Estudiantil</h1>
             <p className="text-slate-100 text-base md:text-lg opacity-95 max-w-2xl mx-auto leading-relaxed">
               Un entorno diseñado para potenciar el crecimiento humano y académico de cada estudiante.
@@ -152,7 +152,7 @@ export const BienestarPage: React.FC = () => {
         </section>
 
         {/* Sección: Compromiso (Efecto de despliegue) */}
-        <section className="py-16 bg-slate-50 border-b border-slate-100">
+        <section className="py-16 bg-slate-50 border-b border-slate-300/50">
           <ScrollReveal delay="duration-500">
             <div className="max-w-3xl mx-auto px-4 text-center relative">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white border border-slate-200 shadow-md shadow-slate-200/80 mb-4 animate-soft-float relative group transition-all duration-300">
@@ -218,7 +218,7 @@ export const BienestarPage: React.FC = () => {
         </section>
 
         {/* ÁREAS DE APOYO ESCOLAR (Efecto de despliegue) */}
-        <section className="py-20 bg-slate-50/60 border-t border-b border-slate-200/50">
+        <section className="py-20 bg-slate-50/60 border-t border-b border-slate-300/50">
           <div className="max-w-6xl mx-auto px-4">
             <ScrollReveal>
               <div className="text-center max-w-2xl mx-auto mb-14">

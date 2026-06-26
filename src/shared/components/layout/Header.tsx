@@ -20,11 +20,11 @@ import type { DemoUserRole } from '../../../features/auth/types';
 
 const navigationLinks = [
   { label: 'Inicio', path: '/' },
-  { label: 'Quienes Somos', path: '/quienes-somos' },
+  { label: 'Quiénes Somos', path: '/quienes-somos' },
   { label: 'Niveles', path: '/niveles' },
   { label: 'Bienestar', path: '/bienestar' },
   { label: 'Noticias', path: '/noticias' },
-  { label: 'Inscripcion', path: '/inscripcion' },
+  { label: 'Inscripción', path: '/inscripcion' },
   { label: 'Opiniones', path: '/opiniones' },
 ];
 
@@ -79,21 +79,31 @@ export const Header: React.FC = () => {
             alt="Logo Educar para Transformar"
             className="h-10 w-10 rounded-full object-cover ring-2 ring-white/20"
           />
-          <span className="text-lg font-semibold tracking-tight">
+          <span className="text-lg font-semibold tracking-tight bg-gradient-to-r from-white via-white to-edu-secondary-light bg-clip-text text-transparent">
             Educar para Transformar
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 md:flex">
-          {navigationLinks.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="text-sm font-medium text-edu-accent transition-colors hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-1.5 md:flex">
+          {navigationLinks.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`relative px-3.5 py-1.5 text-sm font-medium transition-all duration-300 rounded-xl overflow-hidden hover:bg-white/10 hover:text-white ${
+                  isActive
+                    ? 'text-white bg-white/15 font-semibold'
+                    : 'text-white/85'
+                }`}
+              >
+                {item.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-edu-magenta rounded-full" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         <div>
@@ -140,7 +150,7 @@ export const Header: React.FC = () => {
                       className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50 hover:text-edu-primary"
                     >
                       <BookOpenCheck size={14} />
-                      <span>Inscripcion publica</span>
+                      <span>Inscripción pública</span>
                     </Link>
 
                     <hr className="my-1 border-slate-100" />
@@ -149,7 +159,7 @@ export const Header: React.FC = () => {
                       className="flex w-full cursor-pointer items-center gap-2 px-4 py-2 text-left text-xs font-bold text-red-600 transition-colors hover:bg-red-50"
                     >
                       <LogOut size={14} />
-                      <span>Cerrar sesion</span>
+                      <span>Cerrar sesión</span>
                     </button>
                   </div>
                 </>

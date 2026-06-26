@@ -52,7 +52,7 @@ export const TeacherDashboardPage: React.FC = () => {
             key={highlight}
             className="rounded-3xl border border-slate-200/70 bg-white p-5 shadow-sm"
           >
-            <Bell className="h-5 w-5 text-[#0f52ba]" />
+            <Bell className="h-5 w-5 text-edu-primary" />
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               {highlight}
             </p>
@@ -62,7 +62,7 @@ export const TeacherDashboardPage: React.FC = () => {
 
       {myActivities.length > 0 && (
         <section className="rounded-[30px] border border-slate-200/70 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-[#0f52ba] mb-4">
+          <div className="flex items-center gap-2 text-edu-primary mb-4">
             <Activity className="h-5 w-5" />
             <h2 className="text-lg font-bold text-slate-800">Mis actividades extracurriculares</h2>
           </div>
@@ -89,7 +89,7 @@ export const TeacherDashboardPage: React.FC = () => {
 
       <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <article className="rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-[#0f52ba]">
+          <div className="flex items-center gap-2 text-edu-primary">
             <CalendarDays className="h-5 w-5" />
             <h2 className="text-lg font-bold text-slate-800">Recordatorios del ciclo</h2>
           </div>
@@ -103,25 +103,25 @@ export const TeacherDashboardPage: React.FC = () => {
         </article>
 
         <article className="space-y-4 rounded-3xl border border-slate-200/70 bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-[#0f52ba]">
+          <div className="flex items-center gap-2 text-edu-primary">
             <BookOpenCheck className="h-5 w-5" />
             <h2 className="text-lg font-bold text-slate-800">Atajos utiles</h2>
           </div>
           <Link
             to="/noticias"
-            className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-[#0f52ba]/30 hover:bg-white"
+            className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-edu-primary/30 hover:bg-white"
           >
             <div className="flex items-center gap-2">
-              <Newspaper className="h-4 w-4 text-[#0f52ba]" />
+              <Newspaper className="h-4 w-4 text-edu-primary" />
               <span>Ver noticias publicas</span>
             </div>
           </Link>
           <Link
             to="/bienestar"
-            className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-[#0f52ba]/30 hover:bg-white"
+            className="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-edu-primary/30 hover:bg-white"
           >
             <div className="flex items-center gap-2">
-              <BookOpenCheck className="h-4 w-4 text-[#0f52ba]" />
+              <BookOpenCheck className="h-4 w-4 text-edu-primary" />
               <span>Ir a bienestar institucional</span>
             </div>
           </Link>

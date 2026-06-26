@@ -175,7 +175,7 @@ export const NewsPage: React.FC = () => {
           </div>
 
           {commentFeedback && (
-            <div className="mb-5 flex items-start gap-2 rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+            <div className="mb-5 flex items-start gap-2 rounded-2xl border border-edu-secondary/30 bg-edu-secondary/10 px-4 py-3 text-sm text-edu-primary">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" />
               <span>{commentFeedback}</span>
             </div>

@@ -258,6 +258,18 @@ export async function registerInstitutionalUser(input: {
 }) {
   const normalizedEmail = normalizeEmail(input.email);
   const normalizedDni = normalizeDni(input.dni);
+  const approvedStudent =
+    input.role === 'student' ? getInstitutionalStudentByDni(normalizedDni) : null;
+
+  if (input.role === 'student' && !approvedStudent) {
+    throw new Error(
+      'Tu inscripción todavía no fue aprobada por la administración. Primero enviá la solicitud pública y esperá la habilitación del panel institucional.',
+    );
+  }
+
+  if (input.role === 'student' && approvedStudent?.hasAccount) {
+    throw new Error('Este alumno ya tiene una cuenta activa. Puede iniciar sesión directamente.');
+  }
 
   // INTENTIONAL: Try backend registration first. If the backend is unavailable
   // (network error), proceed with local-only registration so the demo flow

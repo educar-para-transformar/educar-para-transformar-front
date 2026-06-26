@@ -52,6 +52,8 @@ export const RegistrationPage: React.FC = () => {
     () => getInstitutionalStudentByDni(formData.dni),
     [formData.dni],
   );
+  const isStudentRegistration = formData.role === 'student';
+  const hasCompleteStudentDni = /^\d{7,8}$/.test(formData.dni);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -62,13 +64,16 @@ export const RegistrationPage: React.FC = () => {
       return;
     }
 
-    // INTENTIONAL: Only block registration if the student already has an active
-    // account. Students whose DNI is in the institutional base (static or dynamic)
-    // but don't yet have an account are allowed to self-register here after the
-    // admin completed the "alta" step from the enrollment panel.
-    if (studentMatch && formData.role === 'student' && studentMatch.hasAccount) {
+    if (isStudentRegistration && !studentMatch) {
       setError(
-        'Este alumno ya tiene una cuenta activa. Puede iniciar sesion directamente.',
+        'Este DNI todavía no está habilitado por administración. Enviá primero la solicitud de inscripción y esperá la aprobación del panel institucional.',
+      );
+      return;
+    }
+
+    if (studentMatch && isStudentRegistration && studentMatch.hasAccount) {
+      setError(
+        'Este alumno ya tiene una cuenta activa. Puede iniciar sesión directamente.',
       );
       return;
     }
@@ -111,18 +116,18 @@ export const RegistrationPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#edf0f5] text-slate-800 animate-fadeIn">
+    <div className="min-h-screen bg-edu-bg text-slate-800 animate-fadeIn">
       {/* Premium Gradient Header Banner */}
-      <section className="bg-gradient-to-r from-[#0f2d59] via-[#0f52ba] to-[#1e40af] px-6 py-14 text-white relative overflow-hidden shadow-sm">
+      <section className="bg-gradient-to-r from-edu-dark via-edu-primary to-edu-secondary-dark px-6 py-14 text-white relative overflow-hidden shadow-sm">
         {/* Decorative glowing elements */}
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-        <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
+        <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-edu-secondary/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-6xl">
           <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl">
             Habilita tu Acceso al Portal
           </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-blue-100/80 md:text-base">
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-edu-secondary-light/80 md:text-base">
             Si ya formas parte de la institución como docente, familia o personal autorizado, crea tus credenciales para ingresar.
           </p>
         </div>
@@ -134,11 +139,11 @@ export const RegistrationPage: React.FC = () => {
           {/* Requisito de Registro Card (Simpler explanation as requested) */}
           <div className="rounded-[28px] border border-slate-100 bg-white p-8 shadow-[0_25px_60px_rgba(15,45,89,0.08)] space-y-6">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-[#0f52ba]">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-edu-secondary/10 px-3 py-1 text-xs font-semibold text-edu-primary">
                 <ShieldCheck className="h-4 w-4" />
                 Validación de Acceso
               </span>
-              <h3 className="mt-3 text-lg font-bold text-[#0f2d59]">
+              <h3 className="mt-3 text-lg font-bold text-edu-dark">
                 Requisito de Registro
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">
@@ -157,7 +162,7 @@ export const RegistrationPage: React.FC = () => {
                 </Link>
                 <Link
                   to="/login"
-                  className="inline-flex h-10 items-center justify-center rounded-xl bg-[#0f52ba]/10 px-4 text-xs font-bold text-[#0f52ba] transition hover:bg-[#0f52ba]/15"
+                  className="inline-flex h-10 items-center justify-center rounded-xl bg-edu-primary/10 px-4 text-xs font-bold text-edu-primary transition hover:bg-edu-primary/15"
                 >
                   Ir al Login
                 </Link>
@@ -165,13 +170,46 @@ export const RegistrationPage: React.FC = () => {
             </div>
           </div>
 
-          {studentMatch && (
-            <div className="rounded-[28px] border border-emerald-100 bg-emerald-50/60 p-6 shadow-sm backdrop-blur-sm">
+          {isStudentRegistration && hasCompleteStudentDni && !studentMatch && (
+            <div className="rounded-[28px] border border-amber-100 bg-amber-50/70 p-6 shadow-sm backdrop-blur-sm">
               <div className="flex items-start gap-3">
-                <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600 animate-pulse" />
+                <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">
-                    DNI Detectado en la Base
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700">
+                    Pendiente de aprobación
+                  </p>
+                  <h3 className="mt-1 text-base font-bold text-slate-800">
+                    DNI no habilitado todavía
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                    Para crear una cuenta de alumno, primero debe existir una solicitud aprobada desde el panel de administración.
+                  </p>
+                  <Link
+                    to="/inscripcion"
+                    className="mt-4 inline-flex h-9 items-center justify-center rounded-xl bg-amber-600 px-4 text-xs font-bold text-white transition hover:bg-amber-700"
+                  >
+                    Iniciar solicitud de inscripción
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {studentMatch && isStudentRegistration && (
+            <div className={`rounded-[28px] border p-6 shadow-sm backdrop-blur-sm ${
+              studentMatch.hasAccount
+                ? 'border-amber-100 bg-amber-50/70'
+                : 'border-emerald-100 bg-emerald-50/60'
+            }`}>
+              <div className="flex items-start gap-3">
+                <Sparkles className={`mt-0.5 h-5 w-5 shrink-0 ${
+                  studentMatch.hasAccount ? 'text-amber-600' : 'text-emerald-600 animate-pulse'
+                }`} />
+                <div>
+                  <p className={`text-[10px] font-bold uppercase tracking-wider ${
+                    studentMatch.hasAccount ? 'text-amber-700' : 'text-emerald-700'
+                  }`}>
+                    DNI habilitado
                   </p>
                   <h3 className="mt-1 text-base font-bold text-slate-800">
                     {studentMatch.firstName} {studentMatch.lastName}
@@ -179,7 +217,7 @@ export const RegistrationPage: React.FC = () => {
                   <p className="mt-2 text-xs leading-relaxed text-slate-600">
                     {studentMatch.hasAccount
                       ? 'Este alumno ya tiene una cuenta activa. Por favor, ve directamente a iniciar sesión.'
-                      : 'Este DNI corresponde a un alumno. La creación de la cuenta de los alumnos es realizada internamente por la institución.'}
+                      : 'La administración ya habilitó este DNI. Podés crear las credenciales para acceder al portal.'}
                   </p>
                 </div>
               </div>
@@ -190,7 +228,7 @@ export const RegistrationPage: React.FC = () => {
         {/* Registration Form Card */}
         <div className="rounded-[30px] border border-slate-100 bg-white p-8 shadow-[0_35px_80px_rgba(15,45,89,0.12)] md:p-10 transition-all duration-300 hover:shadow-[0_45px_100px_rgba(15,45,89,0.16)]">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-[#0f2d59]">
+            <h2 className="text-2xl font-bold text-edu-dark">
               Crear Credenciales
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-500">
@@ -243,7 +281,7 @@ export const RegistrationPage: React.FC = () => {
               <div className="flex flex-wrap gap-3 pt-2">
                 <Link
                   to="/login"
-                  className="inline-flex h-11 items-center justify-center rounded-2xl bg-[#0f52ba] px-6 text-sm font-semibold text-white transition hover:bg-[#0c449e] shadow-md shadow-blue-500/10 hover:shadow-lg"
+                  className="inline-flex h-11 items-center justify-center rounded-2xl bg-edu-primary px-6 text-sm font-semibold text-white transition hover:bg-edu-secondary-dark shadow-md shadow-edu-primary/10 hover:shadow-lg"
                 >
                   Ir a login
                 </Link>
@@ -270,7 +308,7 @@ export const RegistrationPage: React.FC = () => {
                       role: event.target.value as RegistrationRole,
                     }))
                   }
-                  className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 text-sm outline-none transition-all duration-300 focus:border-[#0f52ba] focus:bg-white focus:ring-4 focus:ring-[#0f52ba]/10"
+                  className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 text-sm outline-none transition-all duration-300 focus:border-edu-primary focus:bg-white focus:ring-4 focus:ring-edu-primary/10"
                 >
                   <option value="student">Alumno</option>
                   <option value="teacher">Docente</option>
@@ -295,7 +333,7 @@ export const RegistrationPage: React.FC = () => {
                         dni: event.target.value.replace(/\D/g, ''),
                       }))
                     }
-                    className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-[#0f52ba] focus:bg-white focus:ring-4 focus:ring-[#0f52ba]/10"
+                    className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-edu-primary focus:bg-white focus:ring-4 focus:ring-edu-primary/10"
                     required
                   />
                 </div>
@@ -317,7 +355,7 @@ export const RegistrationPage: React.FC = () => {
                         email: event.target.value,
                       }))
                     }
-                    className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-[#0f52ba] focus:bg-white focus:ring-4 focus:ring-[#0f52ba]/10"
+                    className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-edu-primary focus:bg-white focus:ring-4 focus:ring-edu-primary/10"
                     required
                   />
                 </div>
@@ -340,7 +378,7 @@ export const RegistrationPage: React.FC = () => {
                           password: event.target.value,
                         }))
                       }
-                      className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-[#0f52ba] focus:bg-white focus:ring-4 focus:ring-[#0f52ba]/10"
+                      className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 pl-11 pr-4 text-sm outline-none transition-all duration-300 focus:border-edu-primary focus:bg-white focus:ring-4 focus:ring-edu-primary/10"
                       required
                     />
                   </div>
@@ -360,7 +398,7 @@ export const RegistrationPage: React.FC = () => {
                         confirmPassword: event.target.value,
                       }))
                     }
-                    className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 text-sm outline-none transition-all duration-300 focus:border-[#0f52ba] focus:bg-white focus:ring-4 focus:ring-[#0f52ba]/10"
+                    className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50/50 px-4 text-sm outline-none transition-all duration-300 focus:border-edu-primary focus:bg-white focus:ring-4 focus:ring-edu-primary/10"
                     required
                   />
                 </div>
@@ -368,7 +406,7 @@ export const RegistrationPage: React.FC = () => {
 
               <button
                 type="submit"
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#0f52ba] text-sm font-semibold text-white shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-edu-primary text-sm font-semibold text-white shadow-md shadow-edu-primary/10 hover:shadow-lg hover:shadow-edu-primary/25 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
               >
                 Crear mi cuenta
               </button>

@@ -119,7 +119,7 @@ function formatRequestNumber(request: EnrollmentRequest | null) {
 
 function StepHero({ activeStep }: { activeStep: number }) {
   return (
-    <section className="relative overflow-hidden rounded-b-[28px] bg-[#1452C8] px-5 pb-12 pt-6 text-white shadow-[0_18px_40px_rgba(20,82,200,0.22)] md:rounded-[20px] md:px-10 md:pb-14 md:pt-8">
+    <section className="relative overflow-hidden rounded-b-[28px] bg-edu-primary px-5 pb-12 pt-6 text-white shadow-[0_18px_40px_rgba(20,82,200,0.22)] md:rounded-[20px] md:px-10 md:pb-14 md:pt-8">
       <SchoolLineArt />
       <div className="relative z-10">
         <div className="flex items-center gap-2.5">
@@ -151,7 +151,7 @@ function StepHero({ activeStep }: { activeStep: number }) {
                   <span
                     className={`grid h-8 w-8 place-items-center rounded-full border-2 text-sm font-extrabold transition ${
                       isActive || isDone
-                        ? 'border-white bg-white text-[#1452C8]'
+                        ? 'border-white bg-white text-edu-primary'
                         : 'border-white/85 text-white'
                     }`}
                   >
@@ -202,7 +202,7 @@ function SidePanel() {
       <div className="space-y-10">
         {sideItems.map((item) => (
           <div key={item.title} className="flex gap-4">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#EAF1FF] text-[#1452C8]">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-edu-secondary/10 text-edu-primary">
               {item.icon}
             </div>
             <div>
@@ -218,7 +218,7 @@ function SidePanel() {
 
 function StepBadge({ step }: { step: number }) {
   return (
-    <span className="inline-flex h-6 items-center rounded-full bg-[#1452C8] px-3 text-[11px] font-extrabold text-white">
+    <span className="inline-flex h-6 items-center rounded-full bg-edu-primary px-3 text-[11px] font-extrabold text-white">
       Paso {step} de 4
     </span>
   );
@@ -254,7 +254,7 @@ function Field({
         className={`h-12 w-full rounded-[10px] border bg-white px-4 text-[14px] font-medium text-[#18304D] outline-none transition placeholder:text-[#9AA5B5] focus:ring-4 ${
           error
             ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10'
-            : 'border-[#D8DEE8] focus:border-[#1452C8] focus:ring-[#1452C8]/10'
+            : 'border-[#D8DEE8] focus:border-edu-primary focus:ring-edu-primary/10'
         }`}
       />
       {error && <span className="mt-1.5 block text-[11px] font-semibold text-red-600">{error}</span>}
@@ -288,7 +288,7 @@ function SelectField({
         className={`h-12 w-full rounded-[10px] border bg-white px-4 text-[14px] font-medium text-[#18304D] outline-none transition focus:ring-4 ${
           error
             ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10'
-            : 'border-[#D8DEE8] focus:border-[#1452C8] focus:ring-[#1452C8]/10'
+            : 'border-[#D8DEE8] focus:border-edu-primary focus:ring-edu-primary/10'
         }`}
       >
         {options.map((option) => (
@@ -321,7 +321,7 @@ function ButtonRow({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] border border-[#D8DEE8] bg-white px-4 text-[13px] font-extrabold text-[#1452C8] shadow-sm transition hover:border-[#1452C8]/45 hover:bg-[#F7FAFF] max-sm:w-full"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] border border-[#D8DEE8] bg-white px-4 text-[13px] font-extrabold text-edu-primary shadow-sm transition hover:border-edu-primary/45 hover:bg-[#F7FAFF] max-sm:w-full"
         >
           <ArrowLeft className="h-4 w-4" />
           Volver
@@ -333,7 +333,7 @@ function ButtonRow({
       <button
         type={submit ? 'submit' : 'button'}
         onClick={submit ? undefined : onNext}
-        className="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] bg-[#1452C8] px-5 text-[13px] font-extrabold text-white shadow-[0_10px_20px_rgba(20,82,200,0.24)] transition hover:bg-[#0F45AF] focus:outline-none focus:ring-4 focus:ring-[#1452C8]/20 max-sm:w-full"
+        className="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] bg-edu-primary px-5 text-[13px] font-extrabold text-white shadow-[0_10px_20px_rgba(20,82,200,0.24)] transition hover:bg-edu-secondary-dark focus:outline-none focus:ring-4 focus:ring-edu-primary/20 max-sm:w-full"
       >
         {nextLabel}
         {submit ? <Send className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
@@ -548,25 +548,28 @@ export const EnrollmentPage: React.FC = () => {
           <div className="w-full max-w-[520px] rounded-[24px] bg-white px-7 py-10 text-center shadow-[0_24px_70px_rgba(24,48,77,0.13)] md:px-12 md:py-12">
             <div className="relative mx-auto mb-7 grid h-28 w-28 place-items-center">
               <span className="absolute left-0 top-4 h-2 w-2 rounded-full bg-[#F4B400]" />
-              <span className="absolute right-2 top-1 h-2 w-2 rounded-full bg-[#8ED1FC]" />
+              <span className="absolute right-2 top-1 h-2 w-2 rounded-full bg-edu-secondary-light" />
               <span className="absolute bottom-5 left-3 h-2 w-2 rounded-full bg-[#FF8A80]" />
               <span className="absolute bottom-1 right-8 h-2 w-2 rounded-full bg-[#F4B400]" />
-              <span className="absolute left-7 top-0 h-8 w-1 rotate-[-28deg] rounded-full bg-[#8ED1FC]" />
+              <span className="absolute left-7 top-0 h-8 w-1 rotate-[-28deg] rounded-full bg-edu-secondary-light" />
               <span className="absolute right-8 top-8 h-8 w-1 rotate-[34deg] rounded-full bg-[#FFCC80]" />
-              <span className="grid h-24 w-24 place-items-center rounded-full bg-[#48B843] text-white shadow-[0_18px_34px_rgba(72,184,67,0.3)]">
+              <span className="grid h-24 w-24 place-items-center rounded-full bg-edu-accent text-white shadow-[0_18px_34px_rgba(72,184,67,0.3)]">
                 <Check className="h-12 w-12 stroke-[4]" />
               </span>
             </div>
 
-            <h1 className="text-[1.75rem] font-extrabold leading-tight text-[#1452C8] md:text-[2rem]">
-              ¡Solicitud enviada con éxito!
+            <h1 className="text-[1.75rem] font-extrabold leading-tight text-edu-primary md:text-[2rem]">
+              ¡Solicitud recibida!
             </h1>
             <p className="mx-auto mt-5 max-w-[370px] text-[17px] leading-relaxed text-[#4F5F75]">
-              Gracias por confiar en nosotros. Nos comunicaremos con vos en un plazo
-              de 5 días hábiles.
+              Queda pendiente de revisión por administración. Te contactaremos cuando
+              el panel institucional apruebe o actualice el estado de la inscripción.
             </p>
 
             <div className="mx-auto mt-8 rounded-[10px] bg-[#F7F4EF] px-5 py-6">
+              <p className="mb-3 inline-flex rounded-full bg-amber-100 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-amber-700">
+                Pendiente de aprobación
+              </p>
               <p className="text-[12px] font-semibold text-[#8A93A3]">Número de solicitud</p>
               <div className="mt-3 flex items-center justify-center gap-3 text-[1.45rem] font-extrabold tracking-wide text-[#18304D]">
                 {requestNumber}
@@ -577,7 +580,7 @@ export const EnrollmentPage: React.FC = () => {
             <div className="mt-8 flex flex-col items-center gap-5">
               <Link
                 to="/"
-                className="inline-flex h-12 items-center justify-center gap-3 rounded-[10px] bg-[#1452C8] px-8 text-[15px] font-extrabold text-white transition hover:bg-[#0c3e9e]"
+                className="inline-flex h-12 items-center justify-center gap-3 rounded-[10px] bg-edu-primary px-8 text-[15px] font-extrabold text-white transition hover:bg-edu-secondary-dark"
               >
                 Volver al inicio
               </Link>
@@ -625,12 +628,12 @@ export const EnrollmentPage: React.FC = () => {
                         onClick={() => chooseLevel(item.level)}
                         className={`relative min-h-[210px] rounded-[14px] border bg-white p-5 text-center transition hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(24,48,77,0.08)] ${
                           active
-                            ? 'border-[#1452C8] bg-[#F7FAFF] shadow-[0_10px_26px_rgba(20,82,200,0.12)]'
+                            ? 'border-edu-primary bg-[#F7FAFF] shadow-[0_10px_26px_rgba(20,82,200,0.12)]'
                             : 'border-[#DDE3EC]'
                         }`}
                       >
                         {active && (
-                          <span className="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full bg-[#1452C8] text-white">
+                          <span className="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full bg-edu-primary text-white">
                             <Check className="h-4 w-4 stroke-[4]" />
                           </span>
                         )}
@@ -657,8 +660,8 @@ export const EnrollmentPage: React.FC = () => {
                         onClick={() => setFormData((current) => ({ ...current, schoolYear: course }))}
                         className={`h-9 rounded-[8px] px-4 text-[12px] font-extrabold transition ${
                           formData.schoolYear === course
-                            ? 'bg-[#1452C8] text-white shadow-[0_8px_18px_rgba(20,82,200,0.22)]'
-                            : 'border border-[#D8DEE8] bg-white text-[#68758A] hover:border-[#1452C8]/50'
+                            ? 'bg-edu-primary text-white shadow-[0_8px_18px_rgba(20,82,200,0.22)]'
+                            : 'border border-[#D8DEE8] bg-white text-[#68758A] hover:border-edu-primary/50'
                         }`}
                       >
                         {course}
@@ -753,7 +756,7 @@ export const EnrollmentPage: React.FC = () => {
                       onChange={updateField}
                       rows={4}
                       placeholder="Escribí aquí cualquier información adicional que consideres importante."
-                      className="w-full resize-none rounded-[10px] border border-[#D8DEE8] bg-white px-4 py-3 text-[14px] font-medium text-[#18304D] outline-none transition placeholder:text-[#9AA5B5] focus:border-[#1452C8] focus:ring-4 focus:ring-[#1452C8]/10"
+                      className="w-full resize-none rounded-[10px] border border-[#D8DEE8] bg-white px-4 py-3 text-[14px] font-medium text-[#18304D] outline-none transition placeholder:text-[#9AA5B5] focus:border-edu-primary focus:ring-4 focus:ring-edu-primary/10"
                     />
                   </label>
                 </div>
@@ -786,7 +789,7 @@ export const EnrollmentPage: React.FC = () => {
                       name="acceptedTerms"
                       checked={formData.acceptedTerms}
                       onChange={updateField}
-                      className="mt-0.5 h-4 w-4 rounded border-[#D8DEE8] accent-[#1452C8]"
+                      className="mt-0.5 h-4 w-4 rounded border-[#D8DEE8] accent-edu-primary"
                     />
                     <span>
                       Acepto el tratamiento de datos y confirmo que la información es correcta.

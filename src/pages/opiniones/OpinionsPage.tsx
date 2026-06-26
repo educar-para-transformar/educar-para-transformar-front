@@ -84,7 +84,7 @@ export const OpinionsPage: React.FC = () => {
             Opiniones abiertas
           </span>
           <h1 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">
-            La comunidad puede compartir su mirada sin iniciar sesion.
+            La comunidad puede compartir su mirada sin iniciar sesión.
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/82 md:text-base">
             En este MVP las opiniones se reciben desde una pagina publica y se
@@ -96,7 +96,7 @@ export const OpinionsPage: React.FC = () => {
       <section className="mx-auto grid max-w-6xl gap-6 px-4 py-12 lg:grid-cols-[0.92fr_1.08fr]">
         <div className="rounded-[28px] border border-slate-200/70 bg-white p-6 shadow-sm md:p-8">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-[#0f2d59]">Dejanos tu opinion</h2>
+            <h2 className="text-2xl font-bold text-edu-dark">Dejanos tu opinion</h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-500">
               El envio es publico, pero la publicacion final queda sujeta a una
               revision simple desde el area de autoridades.
@@ -131,7 +131,7 @@ export const OpinionsPage: React.FC = () => {
                     displayName: event.target.value,
                   }))
                 }
-                className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm outline-none transition focus:border-[#0f52ba] focus:bg-white focus:ring-2 focus:ring-[#0f52ba]/15"
+                className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm outline-none transition focus:border-edu-primary focus:bg-white focus:ring-2 focus:ring-edu-primary/15"
               />
             </label>
 
@@ -147,7 +147,7 @@ export const OpinionsPage: React.FC = () => {
                     relation: event.target.value as OpinionRelation,
                   }))
                 }
-                className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm outline-none transition focus:border-[#0f52ba] focus:bg-white focus:ring-2 focus:ring-[#0f52ba]/15"
+                className="h-12 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 text-sm outline-none transition focus:border-edu-primary focus:bg-white focus:ring-2 focus:ring-edu-primary/15"
               >
                 {Object.entries(relationLabels).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -170,14 +170,14 @@ export const OpinionsPage: React.FC = () => {
                     message: event.target.value,
                   }))
                 }
-                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-[#0f52ba] focus:bg-white focus:ring-2 focus:ring-[#0f52ba]/15"
+                className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-edu-primary focus:bg-white focus:ring-2 focus:ring-edu-primary/15"
                 placeholder="Contanos como vivis la propuesta educativa, el acompanamiento o el clima institucional."
               />
             </label>
 
             <button
               type="submit"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#0f52ba] px-6 text-sm font-semibold text-white transition hover:bg-[#0c449e]"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-edu-primary px-6 text-sm font-semibold text-white transition hover:bg-edu-secondary-dark"
             >
               <Send className="h-4 w-4" />
               <span>Enviar opinion</span>
@@ -199,7 +199,7 @@ export const OpinionsPage: React.FC = () => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-2xl font-bold text-[#0f2d59]">
+              <h2 className="text-2xl font-bold text-edu-dark">
                 Opiniones publicadas
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-500">
@@ -207,7 +207,7 @@ export const OpinionsPage: React.FC = () => {
               </p>
             </div>
             <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-slate-500 shadow-sm">
-              <ShieldCheck className="h-4 w-4 text-[#0f52ba]" />
+              <ShieldCheck className="h-4 w-4 text-edu-primary" />
               <span>Moderacion activa</span>
             </div>
           </div>
@@ -222,7 +222,7 @@ export const OpinionsPage: React.FC = () => {
                   <p className="text-sm font-bold text-slate-800">
                     {opinion.displayName}
                   </p>
-                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0f52ba]">
+                  <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-edu-primary">
                     {relationLabels[opinion.relation]}
                   </p>
                 </div>

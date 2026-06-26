@@ -36,7 +36,7 @@ export const GallerySection: React.FC = () => {
   return (
     <section className="pt-6 pb-12 px-4 max-w-7xl mx-auto relative">
       {/* Compact separating line */}
-      <div className="max-w-4xl mx-auto border-t border-slate-200 opacity-70 mb-12"></div>
+      <div className="max-w-4xl mx-auto border-t border-slate-300/50 mb-12"></div>
       
       <div className="mb-12 text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-edu-dark tracking-tight mb-4">

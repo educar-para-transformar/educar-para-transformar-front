@@ -64,7 +64,7 @@ export const StudentRegistrationPage: React.FC = () => {
     const session = getSession();
 
     if (!session || session.role !== 'authority') {
-      setError('Necesitas iniciar sesion como autoridad para crear la cuenta.');
+      setError('Necesitás iniciar sesión como autoridad para crear la cuenta.');
       return;
     }
 
@@ -77,7 +77,7 @@ export const StudentRegistrationPage: React.FC = () => {
       markEnrollmentAccountCreatedByDni(student.dni);
       setAccountVersion((current) => current + 1);
       setSuccessMessage(
-        'Cuenta creada con exito. El alumno ya puede iniciar sesion con juan@educar.com y la contrasena programacion2026.',
+        'Cuenta creada con éxito. El alumno ya puede iniciar sesión con juan@educar.com y la contraseña programacion2026.',
       );
       setSearchedDni(student.dni);
     } catch (creationError) {

@@ -42,7 +42,7 @@ export const FluidStackSection: React.FC = () => {
 
   return (
     <section className="mx-auto flex max-w-7xl flex-col items-center overflow-hidden px-4 pb-10 pt-6">
-      <div className="mx-auto mb-12 w-full max-w-4xl border-t border-slate-200 opacity-70" />
+      <div className="mx-auto mb-12 w-full max-w-4xl border-t border-slate-300/50" />
 
       <div className="mb-12 max-w-3xl text-center">
         <h2 className="mb-4 text-3xl font-bold tracking-tight text-edu-dark md:text-5xl">

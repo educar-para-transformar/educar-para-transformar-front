@@ -25,7 +25,7 @@ const roleLabels: Record<string, string> = {
 };
 
 const roleColors: Record<string, string> = {
-  student: 'bg-blue-50 text-blue-700 border border-blue-200/50',
+  student: 'bg-edu-secondary/10 text-edu-primary border border-edu-secondary/30',
   teacher: 'bg-purple-50 text-purple-700 border border-purple-200/50',
   parent: 'bg-amber-50 text-amber-700 border border-amber-200/50',
   authority: 'bg-violet-50 text-violet-700 border border-violet-200/50',
@@ -138,14 +138,6 @@ export const CuentasDelSistemaPage: React.FC = () => {
         role: account.role,
         status: 'registered',
       });
-    });
-
-    list.push({
-      id: 'auth-director',
-      name: 'Director Demo',
-      email: 'director@educar.com',
-      role: 'authority',
-      status: 'registered',
     });
 
     registered.forEach((r) => {

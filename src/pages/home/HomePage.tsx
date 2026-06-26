@@ -47,7 +47,7 @@ export const HomePage: React.FC = () => {
 
       {/* Floating Action Button (FAB) for WhatsApp/Chat from the wireframe */}
       <a
-        href="https://wa.me/5493624000000"
+        href="https://wa.me/543624451820"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 w-12 h-12 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-40 cursor-pointer"

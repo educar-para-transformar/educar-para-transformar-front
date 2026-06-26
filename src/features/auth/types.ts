@@ -44,7 +44,7 @@ export interface LocalDemoAccount {
   email: string;
   password: string;
   name: string;
-  role: Extract<DemoUserRole, 'parent' | 'teacher'>;
+  role: Extract<DemoUserRole, 'authority' | 'parent' | 'teacher'>;
   summary: string;
   avatar: string;
   highlights: string[];

@@ -49,7 +49,7 @@ export const ForoLayout: React.FC = () => {
 
   const navLinks = [
     { label: 'Volver a la Web', path: '/' },
-    { label: 'Academico', path: '/privado/foro?category=AcadÃ©mico' },
+    { label: 'Académico', path: '/privado/foro?category=Acad%C3%A9mico' },
     { label: 'Vida Escolar', path: '/privado/foro?category=Vida Escolar' },
     { label: 'Grupos de Estudio', path: '/privado/foro?category=Grupos de Estudio' },
     { label: 'Actividades', path: '/privado/foro/actividades' },
@@ -192,7 +192,7 @@ export const ForoLayout: React.FC = () => {
                       className="flex w-full cursor-pointer items-center gap-2 px-4 py-2 text-left text-xs font-bold text-red-600 transition-colors hover:bg-red-50"
                     >
                       <LogOut size={14} />
-                      <span>Cerrar sesion</span>
+                      <span>Cerrar sesión</span>
                     </button>
                   </div>
                 </>

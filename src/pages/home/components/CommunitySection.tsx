@@ -8,7 +8,7 @@ export const CommunitySection: React.FC = () => {
     <section className="pt-6 pb-12 px-6">
       <div className="max-w-7xl mx-auto text-center">
         {/* Compact separating line */}
-        <div className="w-full max-w-4xl mx-auto border-t border-slate-200 opacity-70 mb-12"></div>
+        <div className="w-full max-w-4xl mx-auto border-t border-slate-300/50 mb-12"></div>
 
         <h2 className="text-3xl md:text-5xl font-bold text-edu-dark mb-4 tracking-tight">
           Somos <span className="text-edu-primary">Educar Para Transformar</span>
@@ -19,7 +19,7 @@ export const CommunitySection: React.FC = () => {
           ¡Prepárate para adentrarte en nuestra comunidad!
         </p>
         
-        <div className="max-w-4xl mx-auto relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 aspect-[16/9] md:aspect-[21/9] group mb-12">
+        <div className="max-w-4xl mx-auto relative rounded-3xl overflow-hidden shadow-2xl shadow-edu-primary/10 aspect-[16/9] md:aspect-[21/9] group mb-12">
           <img 
             src={imagenComunidad} 
             alt="Nuestra comunidad viviendo la experiencia Educar Para Transformar" 
@@ -44,4 +44,3 @@ export const CommunitySection: React.FC = () => {
     </section>
   );
 };
-

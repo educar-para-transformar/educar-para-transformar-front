@@ -64,7 +64,7 @@ export const LevelsPage: React.FC = () => {
           <img src={imagenHero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-edu-primary/40" />
           <div className="max-w-4xl mx-auto relative z-10 space-y-4">
-            <span className="text-xs uppercase font-bold tracking-widest text-edu-accent bg-white/15 px-4 py-1.5 rounded-full backdrop-blur-sm inline-block">
+            <span className="text-xs uppercase font-bold tracking-widest text-edu-secondary-light bg-white/15 px-4 py-1.5 rounded-full backdrop-blur-sm inline-block">
               Propuesta Académica
             </span>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-xs">
@@ -132,7 +132,7 @@ export const LevelsPage: React.FC = () => {
         </div>
 
         {/* SECCIÓN 3: PILARES DE FORMACIÓN (Corregido: Letra más grande y links estables) */}
-        <div className="mt-28 pt-16 border-t border-slate-200/60">
+        <div className="mt-28 pt-16 border-t border-slate-300/50">
           <div className="text-center max-w-xl mx-auto mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-edu-secondary bg-edu-secondary/10 px-3 py-1 rounded-md">
               Diferenciales

@@ -67,13 +67,13 @@ export const LoginPage: React.FC = () => {
   }
 
   return (
-    <div className="w-full bg-[#edf0f5] text-slate-800">
+    <div className="w-full bg-edu-bg text-slate-800">
       <div className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-2">
         {/* Left Visual Banner Section */}
-        <section className="hidden bg-gradient-to-br from-[#051124] via-[#091f3d] to-[#0f3d75] px-16 py-14 text-white lg:flex lg:flex-col lg:justify-between relative overflow-hidden">
+        <section className="hidden bg-gradient-to-br from-edu-dark via-edu-primary to-edu-primary-light px-16 py-14 text-white lg:flex lg:flex-col lg:justify-between relative overflow-hidden">
           {/* Decorative glowing blobs */}
           <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-white/5 blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-edu-secondary/10 blur-3xl" />
 
           {/* Decorative Dot Matrix Pattern */}
           <div className="absolute right-12 top-1/4 opacity-15 pointer-events-none">
@@ -130,8 +130,8 @@ export const LoginPage: React.FC = () => {
           </svg>
 
           <div className="relative z-10 space-y-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-blue-200">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-white">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-edu-secondary-light">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-edu-primary text-white">
                 <GraduationCap className="h-3 w-3" />
               </span>
               PORTAL EDUCATIVO
@@ -141,9 +141,9 @@ export const LoginPage: React.FC = () => {
                 Educar para <br /> Transformar
               </h1>
               {/* Green Accent Line */}
-              <div className="h-[4px] w-14 bg-[#3cd070] rounded-full" />
+              <div className="h-[4px] w-14 bg-edu-accent rounded-full" />
               
-              <p className="text-[14.5px] leading-relaxed text-blue-100/80 pt-2">
+              <p className="text-[14.5px] leading-relaxed text-edu-secondary-light/80 pt-2">
                 Bienvenido al sistema de gestión académica. Desde aquí, familias, alumnos,
                 docentes y directivos acceden a sus espacios de comunicación, seguimiento escolar y herramientas institucionales.
               </p>
@@ -153,15 +153,15 @@ export const LoginPage: React.FC = () => {
           {/* Left panel card */}
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md shadow-2xl space-y-4 max-w-[460px] relative z-10">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-md">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-edu-primary text-white shadow-md">
                 <GraduationCap className="h-5 w-5" />
               </div>
               <div>
                 <h3 className="text-[14.5px] font-bold text-white leading-snug">Gestión Académica Integral</h3>
-                <p className="text-[11px] text-blue-300/80 mt-0.5">Acceso simplificado sin selectores de rol</p>
+                <p className="text-[11px] text-edu-secondary-light/80 mt-0.5">Acceso simplificado sin selectores de rol</p>
               </div>
             </div>
-            <p className="text-xs leading-relaxed text-blue-100/70">
+            <p className="text-xs leading-relaxed text-edu-secondary-light/70">
               Nuestro sistema detecta automáticamente tu perfil para dirigirte a tu panel correspondiente.
               Si todavía no has registrado tu acceso y eres alumno o familia de la institución, realiza el proceso de registro con tu DNI.
             </p>
@@ -169,18 +169,18 @@ export const LoginPage: React.FC = () => {
 
           {/* Left Panel Footer */}
           <div className="relative z-10 space-y-2">
-            <div className="flex items-center gap-2 text-[13.5px] text-blue-200/90">
-              <ShieldCheck className="h-5 w-5 text-[#3cd070] shrink-0" />
+            <div className="flex items-center gap-2 text-[13.5px] text-edu-secondary-light/90">
+              <ShieldCheck className="h-5 w-5 text-edu-accent shrink-0" />
               <span>Seguro, confiable y siempre disponible</span>
             </div>
-            <div className="text-[11px] text-blue-200/40">
+            <div className="text-[11px] text-edu-secondary-light/40">
               © 2026 Educar para Transformar. Todos los derechos reservados.
             </div>
           </div>
         </section>
 
         {/* Right Form Section */}
-        <section className="flex items-center justify-center px-6 py-12 sm:px-10 lg:px-16 bg-[#edf0f5]">
+        <section className="flex items-center justify-center px-6 py-12 sm:px-10 lg:px-16 bg-edu-bg">
           <div className="w-full max-w-[480px] space-y-6">
             
             {/* Card 1: Login Form */}
@@ -188,14 +188,14 @@ export const LoginPage: React.FC = () => {
               
               {/* Login Header inside the card */}
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-edu-secondary/10 text-edu-primary">
                   <GraduationCap className="h-6 w-6" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-edu-primary">
                     PORTAL EDUCAR
                   </span>
-                  <h2 className="text-2xl font-extrabold text-[#0a1c33] leading-tight">
+                  <h2 className="text-2xl font-extrabold text-edu-dark leading-tight">
                     Ingresar al portal
                   </h2>
                   <p className="text-xs leading-relaxed text-slate-500">
@@ -232,7 +232,7 @@ export const LoginPage: React.FC = () => {
                       value={email}
                       onChange={(event) => setEmail(event.target.value)}
                       placeholder="usuario@educar.com"
-                      className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-[14.5px] text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#0f52ba] focus:ring-4 focus:ring-[#0f52ba]/5"
+                      className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-[14.5px] text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-edu-primary focus:ring-4 focus:ring-edu-primary/5"
                       disabled={isSubmitting}
                       required
                     />
@@ -251,7 +251,7 @@ export const LoginPage: React.FC = () => {
                       value={password}
                       onChange={(event) => setPassword(event.target.value)}
                       placeholder="Tu contraseña"
-                      className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-12 text-[14.5px] text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-[#0f52ba] focus:ring-4 focus:ring-[#0f52ba]/5"
+                      className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-12 text-[14.5px] text-slate-800 placeholder-slate-400 outline-none transition-all duration-200 focus:border-edu-primary focus:ring-4 focus:ring-edu-primary/5"
                       disabled={isSubmitting}
                       required
                     />
@@ -276,7 +276,7 @@ export const LoginPage: React.FC = () => {
                           'Para recuperar tu contraseña, comunícate con la secretaría o el soporte técnico de la institución.'
                         );
                       }}
-                      className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline transition-all duration-200"
+                      className="text-xs font-semibold text-edu-primary hover:text-edu-secondary-dark hover:underline transition-all duration-200"
                     >
                       ¿Olvidaste tu contraseña?
                     </Link>
@@ -287,7 +287,7 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="relative flex h-12 w-full items-center justify-center rounded-xl bg-[#0f52ba] text-sm font-semibold text-white shadow-lg shadow-blue-500/10 hover:bg-[#0c449e] hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-75 cursor-pointer"
+                  className="relative flex h-12 w-full items-center justify-center rounded-xl bg-edu-primary text-sm font-semibold text-white shadow-lg shadow-edu-primary/10 hover:bg-edu-secondary-dark hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-75 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center gap-2">
@@ -342,7 +342,7 @@ export const LoginPage: React.FC = () => {
               </div>
               <Link
                 to="/registro"
-                className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-blue-600 px-4 text-xs font-bold text-blue-600 hover:bg-blue-50/50 transition-all duration-200 shrink-0 cursor-pointer"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-edu-primary px-4 text-xs font-bold text-edu-primary hover:bg-edu-secondary/10 transition-all duration-200 shrink-0 cursor-pointer"
               >
                 <span>Registro al sistema</span>
                 <ArrowRight className="h-3.5 w-3.5" />

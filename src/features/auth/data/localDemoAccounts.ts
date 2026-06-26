@@ -2,6 +2,21 @@ import type { LocalDemoAccount } from '../types';
 
 export const localDemoAccounts: LocalDemoAccount[] = [
   {
+    email: 'director@educar.com',
+    password: 'programacion2026',
+    name: 'Director Demo',
+    role: 'authority',
+    summary: 'Autoridad institucional con acceso al panel de administración.',
+    avatar:
+      'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200',
+    highlights: [
+      'Gestión de solicitudes de inscripción',
+      'Moderación de contenidos públicos',
+      'Administración de cuentas del sistema',
+    ],
+    department: 'Dirección',
+  },
+  {
     email: 'docente@educar.com',
     password: 'programacion2026',
     name: 'Prof. Laura Benitez',

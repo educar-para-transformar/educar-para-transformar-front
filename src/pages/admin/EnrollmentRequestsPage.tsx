@@ -49,7 +49,7 @@ const statusClasses: Record<EnrollmentStatus, string> = {
   reviewed: 'bg-sky-50 text-sky-700 border border-sky-200/50',
   approved_for_registration: 'bg-emerald-50 text-emerald-700 border border-emerald-200/50',
   pending_admin_creation: 'bg-violet-50 text-violet-700 border border-violet-200/50',
-  account_created: 'bg-blue-50 text-blue-700 border border-blue-200/50',
+  account_created: 'bg-edu-secondary/10 text-edu-primary border border-edu-secondary/30',
   archived: 'bg-slate-100 text-slate-600 border border-slate-200/50',
 };
 
@@ -103,7 +103,7 @@ function getStepView(request: EnrollmentRequest): StepView {
         body: 'La cuenta se encuentra creada y activa. El estudiante ya puede ingresar al portal privado utilizando sus credenciales.',
         ctaLabel: 'Ir al Login',
         ctaPath: '/login',
-        accent: 'border-blue-100 bg-gradient-to-r from-blue-50/50 to-white',
+        accent: 'border-edu-secondary/20 bg-gradient-to-r from-edu-secondary/10 to-white',
       };
     case 'archived':
       return {
@@ -263,14 +263,14 @@ export const EnrollmentRequestsPage: React.FC = () => {
                 {getEnrollmentStatusCount('approved_for_registration')}
               </p>
             </div>
-            <div className="rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white px-4 py-3 shadow-sm hover:-translate-y-0.5 transition-all">
-              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-blue-600">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-blue-200/50 text-blue-700">
+            <div className="rounded-xl border border-edu-secondary/20 bg-gradient-to-br from-edu-secondary/10 to-white px-4 py-3 shadow-sm hover:-translate-y-0.5 transition-all">
+              <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-edu-primary">
+                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-edu-secondary/20 text-edu-primary">
                   <GraduationCap size={12} />
                 </div>
                 Con Cuenta
               </div>
-              <p className="mt-1.5 text-xl font-extrabold text-blue-800">
+              <p className="mt-1.5 text-xl font-extrabold text-edu-dark">
                 {getEnrollmentStatusCount('account_created')}
               </p>
             </div>
@@ -584,7 +584,7 @@ export const EnrollmentRequestsPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <p className="text-xs text-edu-muted leading-relaxed bg-gradient-to-r from-blue-50/50 to-white px-4 py-3 rounded-xl border border-blue-100/40">
+            <p className="text-xs text-edu-muted leading-relaxed bg-gradient-to-r from-edu-secondary/10 to-white px-4 py-3 rounded-xl border border-edu-secondary/20">
               Se enviará el correo de aceptación al tutor con la información.
             </p>
             <button

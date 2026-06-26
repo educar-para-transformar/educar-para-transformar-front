@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 
+const contactData = {
+  address: 'Av. Sarmiento 1250',
+  phone: '(0362) 445-1820',
+  email: 'contacto@educarparatransformar.edu.ar',
+};
+
 export const ContactSection: React.FC = () => {
   const [success, setSuccess] = useState(false);
 
@@ -13,7 +19,7 @@ export const ContactSection: React.FC = () => {
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-edu-accent/10 blur-3xl" />
 
       <div className="relative z-10 w-full max-w-4xl text-center">
-        <div className="mx-auto mb-12 w-full max-w-4xl border-t border-slate-200 opacity-70" />
+        <div className="mx-auto mb-12 w-full max-w-4xl border-t border-slate-300/50" />
 
         <div className="mb-4 inline-block rounded-full border border-slate-100 bg-white px-4 py-1 text-xs font-bold uppercase tracking-wider text-edu-primary shadow-sm">
           Hablemos
@@ -33,19 +39,19 @@ export const ContactSection: React.FC = () => {
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm">
               <MapPin size={16} />
             </div>
-            <span>Av. Principal 123</span>
+            <span>{contactData.address}</span>
           </div>
           <div className="flex items-center gap-2.5 text-sm font-medium text-slate-600 transition-colors hover:text-edu-primary">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm">
               <Phone size={16} />
             </div>
-            <span>(0362) 555-0000</span>
+            <span>{contactData.phone}</span>
           </div>
           <div className="flex items-center gap-2.5 text-sm font-medium text-slate-600 transition-colors hover:text-edu-primary">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm">
               <Mail size={16} />
             </div>
-            <span>info@educar.edu.ar</span>
+            <span>{contactData.email}</span>
           </div>
         </div>
 
@@ -55,14 +61,14 @@ export const ContactSection: React.FC = () => {
               <p className="text-sm font-bold text-emerald-800">Consulta enviada</p>
               <p className="text-sm leading-relaxed text-emerald-700">
                 Tu mensaje quedo registrado dentro del MVP. Si prefieres avanzar
-                directo con admisiones, puedes continuar por solicitud de inscripcion.
+                directo con admisiones, puedes continuar por solicitud de inscripción.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/inscripcion"
                   className="inline-flex h-11 items-center justify-center rounded-xl bg-edu-primary px-4 text-sm font-semibold text-white transition hover:bg-edu-secondary"
                 >
-                  Ir a inscripcion
+                  Ir a inscripción
                 </Link>
                 <button
                   type="button"
